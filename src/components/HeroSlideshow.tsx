@@ -46,7 +46,7 @@ export default function HeroSlideshow() {
             Contemporary Art by Young K Jang
           </p>
           <Link
-            href="/collection"
+            href="/#collection"
             className="inline-block px-8 py-3 border-2 border-white text-white font-semibold tracking-wider uppercase text-sm hover:bg-white hover:text-text-primary transition-colors duration-300"
           >
             Explore Collection
