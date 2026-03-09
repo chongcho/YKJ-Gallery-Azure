@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function VideoPage() {
-  const hasEmbeddedVideos = videos.some((v) => v.youtubeId || v.vimeoId);
+  const hasEmbeddedVideos = videos.some(
+    (v) => v.src || v.youtubeId || v.vimeoId
+  );
 
   return (
     <>
@@ -28,26 +30,11 @@ export default function VideoPage() {
 
         {!hasEmbeddedVideos && (
           <div className="mb-12 p-4 bg-warm-gray border-l-4 border-gold text-sm text-text-secondary">
-            <strong>To add videos:</strong> Upload your videos to{" "}
-            <a
-              href="https://www.youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold hover:underline"
-            >
-              YouTube
-            </a>{" "}
-            or{" "}
-            <a
-              href="https://vimeo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold hover:underline"
-            >
-              Vimeo
-            </a>
-            , then add the video IDs in{" "}
-            <code className="bg-white px-1">src/data/videos.ts</code>.
+            <strong>To add videos:</strong> Place your .mp4 or .webm files in{" "}
+            <code className="bg-white px-1">public/videos/</code> and name them{" "}
+            <code className="bg-white px-1">adobe-3a.mp4</code>,{" "}
+            <code className="bg-white px-1">golf.mp4</code>,{" "}
+            <code className="bg-white px-1">cactus-5.mp4</code>.
           </div>
         )}
 
@@ -58,6 +45,7 @@ export default function VideoPage() {
               title={video.title}
               description={video.description}
               placeholder={video.placeholder}
+              src={video.src}
               youtubeId={video.youtubeId}
               vimeoId={video.vimeoId}
             />
