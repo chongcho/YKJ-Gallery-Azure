@@ -23,6 +23,26 @@
     {
       "route": "/contact",
       "rewrite": "/contact.html"
+    },
+    {
+      "route": "/admin",
+      "rewrite": "/admin.html"
+    },
+    {
+      "route": "/admin/login",
+      "rewrite": "/admin/login.html"
+    },
+    {
+      "route": "/admin/paintings",
+      "rewrite": "/admin/paintings.html"
+    },
+    {
+      "route": "/admin/exhibitions",
+      "rewrite": "/admin/exhibitions.html"
+    },
+    {
+      "route": "/admin/videos",
+      "rewrite": "/admin/videos.html"
     }
   ],
   "responseOverrides": {
