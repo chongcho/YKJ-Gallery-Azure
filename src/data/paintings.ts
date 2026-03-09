@@ -1,7 +1,7 @@
 export interface Painting {
   id: string;
   title: string;
-  category: "taos" | "adobe" | "cactus" | "flowers" | "blossom" | "rose" | "other";
+  category: "adobe" | "cactus" | "flowers" | "other";
   year: number;
   medium: string;
   size: string;
@@ -12,7 +12,7 @@ export const paintings: Painting[] = [
   {
     id: "taos",
     title: "Taos",
-    category: "taos",
+    category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '36" x 48" x 1.5"',
@@ -21,7 +21,7 @@ export const paintings: Painting[] = [
   {
     id: "taos-2",
     title: "Taos 2",
-    category: "taos",
+    category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '30" x 24" x 1.5"',
@@ -30,7 +30,7 @@ export const paintings: Painting[] = [
   {
     id: "taos-3",
     title: "Taos 3",
-    category: "taos",
+    category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30" x 1.5"',
@@ -129,7 +129,7 @@ export const paintings: Painting[] = [
   {
     id: "blossom",
     title: "Blossom",
-    category: "blossom",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '30" x 40" x 1.5"',
@@ -138,7 +138,7 @@ export const paintings: Painting[] = [
   {
     id: "blossom-2",
     title: "Blossom 2",
-    category: "blossom",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '30" x 40" x 1.5"',
@@ -147,7 +147,7 @@ export const paintings: Painting[] = [
   {
     id: "blossom-3",
     title: "Blossom 3",
-    category: "blossom",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '16" x 20" x 0.75"',
@@ -156,7 +156,7 @@ export const paintings: Painting[] = [
   {
     id: "blossom-4",
     title: "Blossom 4",
-    category: "blossom",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24" x 1.5"',
@@ -165,7 +165,7 @@ export const paintings: Painting[] = [
   {
     id: "blossom-5",
     title: "Blossom 5",
-    category: "blossom",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '16" x 20" x 0.75"',
@@ -174,7 +174,7 @@ export const paintings: Painting[] = [
   {
     id: "blossom-6",
     title: "Blossom 6",
-    category: "blossom",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '12" x 12" x 1.5"',
@@ -183,7 +183,7 @@ export const paintings: Painting[] = [
   {
     id: "rose",
     title: "Rose",
-    category: "rose",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '9" x 12" x 1.5"',
@@ -192,7 +192,7 @@ export const paintings: Painting[] = [
   {
     id: "rose-2",
     title: "Rose 2",
-    category: "rose",
+    category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
     size: '9" x 12" x 1.5"',
@@ -229,11 +229,8 @@ export const paintings: Painting[] = [
 
 export const categories = [
   { id: "all", label: "All" },
-  { id: "taos", label: "Taos" },
   { id: "adobe", label: "Adobe" },
   { id: "cactus", label: "Cactus" },
   { id: "flowers", label: "Flowers" },
-  { id: "blossom", label: "Blossom" },
-  { id: "rose", label: "Rose" },
   { id: "other", label: "Other" },
 ];
