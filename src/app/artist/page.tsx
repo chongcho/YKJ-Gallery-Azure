@@ -64,31 +64,6 @@ export default function ArtistPage() {
           </div>
         </div>
       </section>
-
-      {/* Gallery strip */}
-      <section className="bg-warm-gray py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="font-serif text-3xl text-center mb-8">
-            Selected Works
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              "/images/paintings/taos.jpg",
-              "/images/paintings/cactus-5.jpg",
-              "/images/paintings/flowers.jpg",
-              "/images/paintings/wildflowers.jpg",
-            ].map((src) => (
-              <img
-                key={src}
-                src={src}
-                alt="Selected work"
-                className="w-full h-48 object-cover"
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
