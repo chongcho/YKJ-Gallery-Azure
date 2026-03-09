@@ -9,6 +9,10 @@
       "rewrite": "/artist.html"
     },
     {
+      "route": "/exhibition",
+      "rewrite": "/exhibition.html"
+    },
+    {
       "route": "/collection",
       "rewrite": "/collection.html"
     },
