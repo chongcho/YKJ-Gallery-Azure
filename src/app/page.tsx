@@ -1,86 +1,20 @@
-import Link from "next/link";
 import HeroSlideshow from "@/components/HeroSlideshow";
-import { paintings } from "@/data/paintings";
+import CollectionGallery from "@/components/CollectionGallery";
 
 export default function Home() {
-  const featured = paintings.slice(0, 6);
-
   return (
     <>
       <HeroSlideshow />
 
-      {/* Featured Works */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="font-serif text-4xl text-center mb-2">
-          Featured Works
-        </h2>
-        <div className="w-16 h-0.5 bg-gold mx-auto mb-12" />
-
-        <div
-          className="columns-1 sm:columns-2 lg:columns-3 gap-8"
-          style={{ columnFill: "balance" }}
-        >
-          {featured.map((painting) => (
-            <Link
-              key={painting.id}
-              href={`/collection#${painting.id}`}
-              className="group block break-inside-avoid mb-8"
-            >
-              <div className="overflow-hidden bg-warm-gray rounded-sm">
-                <img
-                  src={painting.image}
-                  alt={painting.title}
-                  className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                  loading="lazy"
-                  style={{ display: "block" }}
-                />
-              </div>
-              <h3 className="font-serif text-lg mt-3 group-hover:text-gold transition-colors">
-                {painting.title}
-              </h3>
-              <p className="text-sm text-text-secondary">
-                {painting.medium}, {painting.year}
-              </p>
-            </Link>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Link
-            href="/collection"
-            className="inline-block px-8 py-3 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-sm hover:bg-gold hover:text-white transition-colors duration-300"
-          >
-            View Full Collection
-          </Link>
-        </div>
-      </section>
-
-      {/* About Preview */}
-      <section className="bg-warm-gray">
-        <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2">
-            <img
-              src="/images/gallery-bg.jpg"
-              alt="YKJ Gallery"
-              className="w-full h-80 object-cover"
-            />
-          </div>
-          <div className="md:w-1/2">
-            <h2 className="font-serif text-3xl mb-4">About the Artist</h2>
-            <div className="w-12 h-0.5 bg-gold mb-6" />
-            <p className="text-text-secondary leading-relaxed mb-6">
-              Young K Jang is a contemporary artist who has been pursuing her
-              modern-abstract painting areas for decades. Her paintings are
-              inspired by the people, nature, and things around us.
-            </p>
-            <Link
-              href="/artist"
-              className="inline-block px-6 py-2.5 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-sm hover:bg-gold hover:text-white transition-colors duration-300"
-            >
-              Learn More
-            </Link>
+      {/* Full Collection */}
+      <section id="collection" className="scroll-mt-20">
+        <div className="bg-warm-gray py-16">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <h2 className="font-serif text-5xl mb-4">Collections</h2>
+            <div className="w-20 h-0.5 bg-gold mx-auto" />
           </div>
         </div>
+        <CollectionGallery />
       </section>
     </>
   );
