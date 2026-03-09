@@ -2,23 +2,46 @@
 
 interface VideoEmbedProps {
   title: string;
+  /** Path to local video file (e.g. /videos/adobe-3a.mp4) */
+  src?: string;
   /** YouTube video ID (e.g. from https://www.youtube.com/watch?v=VIDEO_ID) */
   youtubeId?: string;
   /** Vimeo video ID (e.g. from https://vimeo.com/VIDEO_ID) */
   vimeoId?: string;
-  /** Fallback image when no video ID is provided */
+  /** Fallback image when no video is provided */
   placeholder: string;
   description: string;
 }
 
 export default function VideoEmbed({
   title,
+  src,
   youtubeId,
   vimeoId,
   placeholder,
   description,
 }: VideoEmbedProps) {
-  const hasVideo = youtubeId || vimeoId;
+  const hasVideo = src || youtubeId || vimeoId;
+
+  if (src) {
+    return (
+      <div>
+        <div className="relative w-full aspect-video overflow-hidden bg-warm-gray rounded-sm">
+          <video
+            src={src}
+            controls
+            playsInline
+            poster={placeholder}
+            className="w-full h-full object-contain"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <h3 className="font-serif text-lg mt-3">{title}</h3>
+        <p className="text-sm text-text-secondary">{description}</p>
+      </div>
+    );
+  }
 
   if (youtubeId) {
     return (
