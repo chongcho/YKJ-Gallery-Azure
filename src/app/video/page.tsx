@@ -30,11 +30,9 @@ export default function VideoPage() {
 
         {!hasEmbeddedVideos && (
           <div className="mb-12 p-4 bg-warm-gray border-l-4 border-gold text-sm text-text-secondary">
-            <strong>To add videos:</strong> Place your .mp4 or .webm files in{" "}
-            <code className="bg-white px-1">public/videos/</code> and name them{" "}
-            <code className="bg-white px-1">adobe-3a.mp4</code>,{" "}
-            <code className="bg-white px-1">golf.mp4</code>,{" "}
-            <code className="bg-white px-1">cactus-5.mp4</code>.
+            <strong>To add videos:</strong> Export all 14 videos from Wix Video Manager, then place .mp4 files in{" "}
+            <code className="bg-white px-1">public/videos/</code>. See{" "}
+            <code className="bg-white px-1">public/videos/README.md</code> for expected filenames.
           </div>
         )}
 
