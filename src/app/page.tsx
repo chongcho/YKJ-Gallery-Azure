@@ -16,19 +16,23 @@ export default function Home() {
         </h2>
         <div className="w-16 h-0.5 bg-gold mx-auto mb-12" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          className="columns-1 sm:columns-2 lg:columns-3 gap-8"
+          style={{ columnFill: "balance" }}
+        >
           {featured.map((painting) => (
             <Link
               key={painting.id}
               href={`/collection#${painting.id}`}
-              className="group block"
+              className="group block break-inside-avoid mb-8"
             >
-              <div className="overflow-hidden bg-warm-gray">
+              <div className="overflow-hidden bg-warm-gray rounded-sm">
                 <img
                   src={painting.image}
                   alt={painting.title}
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
+                  style={{ display: "block" }}
                 />
               </div>
               <h3 className="font-serif text-lg mt-3 group-hover:text-gold transition-colors">
