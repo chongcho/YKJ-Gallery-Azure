@@ -35,21 +35,25 @@ export default function CollectionGallery() {
         ))}
       </div>
 
-      {/* Gallery grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Masonry gallery */}
+      <div
+        className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6"
+        style={{ columnFill: "balance" }}
+      >
         {filtered.map((painting) => (
           <button
             key={painting.id}
             id={painting.id}
             onClick={() => setSelectedPainting(painting)}
-            className="group text-left"
+            className="group text-left break-inside-avoid mb-6 block w-full"
           >
-            <div className="overflow-hidden bg-warm-gray">
+            <div className="overflow-hidden bg-warm-gray rounded-sm">
               <img
                 src={painting.image}
                 alt={painting.title}
-                className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="lazy"
+                style={{ display: "block" }}
               />
             </div>
             <h3 className="font-serif text-base mt-2 group-hover:text-gold transition-colors">
