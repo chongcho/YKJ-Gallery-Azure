@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 const slides = [
   { image: "/images/paintings/taos.jpg", title: "Taos" },
@@ -42,15 +41,9 @@ export default function HeroSlideshow() {
           <h1 className="font-serif text-5xl md:text-7xl mb-4 drop-shadow-lg">
             YKJ Gallery
           </h1>
-          <p className="text-lg md:text-xl tracking-widest uppercase mb-8 drop-shadow-md">
+          <p className="text-lg md:text-xl tracking-widest uppercase drop-shadow-md">
             Contemporary Art by Young K Jang
           </p>
-          <Link
-            href="/#collection"
-            className="inline-block px-8 py-3 border-2 border-white text-white font-semibold tracking-wider uppercase text-sm hover:bg-white hover:text-text-primary transition-colors duration-300"
-          >
-            Explore Collection
-          </Link>
         </div>
       </div>
 
