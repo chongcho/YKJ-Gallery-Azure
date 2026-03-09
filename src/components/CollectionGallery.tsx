@@ -54,6 +54,10 @@ export default function CollectionGallery() {
                 className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="lazy"
                 style={{ display: "block" }}
+                onError={(e) => {
+                  e.currentTarget.src = "/images/placeholder.svg";
+                  e.currentTarget.onerror = null;
+                }}
               />
             </div>
             <h3 className="font-serif text-base mt-2 group-hover:text-gold transition-colors">

@@ -43,6 +43,10 @@ export default function PaintingModal({ painting, onClose }: Props) {
             src={painting.image}
             alt={painting.title}
             className="max-h-[70vh] w-auto object-contain"
+            onError={(e) => {
+              e.currentTarget.src = "/images/placeholder.svg";
+              e.currentTarget.onerror = null;
+            }}
           />
         </div>
 
