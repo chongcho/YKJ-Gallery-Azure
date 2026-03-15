@@ -2,7 +2,7 @@ export interface Video {
   title: string;
   description: string;
   placeholder: string;
-  /** Path to your video file in public/videos/ (e.g. /videos/adobe-3a.mp4) */
+  /** Path to your video file in public/videos/ (e.g. /videos/adobe-3.mp4) */
   src?: string;
   /** YouTube video ID - alternative to src */
   youtubeId?: string;
@@ -12,87 +12,87 @@ export interface Video {
 
 export const videos: Video[] = [
   {
-    title: "Adobe 3a",
-    description: "A painting process video showcasing the Adobe series.",
-    placeholder: "/images/paintings/adobe-3.jpg",
-    src: "/videos/adobe-3a.mp4",
+    title: "Taos",
+    description: "Painting process video for the Taos series.",
+    placeholder: "/images/paintings/taos.jpg",
+    src: "/videos/Taos.mp4",
   },
   {
-    title: "Golf",
-    description: "Art inspired by the greens and landscapes of the golf course.",
-    placeholder: "/images/paintings/wildflowers.jpg",
-    src: "/videos/golf.mp4",
+    title: "Adobe 1",
+    description: "Painting process video for Adobe 1.",
+    placeholder: "/images/paintings/adobe.jpg",
+    src: "/videos/Adobe 1.mp4",
+  },
+  {
+    title: "Adobe 2",
+    description: "Painting process video for Adobe 2.",
+    placeholder: "/images/paintings/adobe-2.jpg",
+    src: "/videos/Adobe 2.mp4",
+  },
+  {
+    title: "Adobe 3",
+    description: "Painting process video for Adobe 3.",
+    placeholder: "/images/paintings/adobe-3.jpg",
+    src: "/videos/Adobe 3.mp4",
+  },
+  {
+    title: "Cactus 1",
+    description: "Painting process video for Cactus 1.",
+    placeholder: "/images/paintings/cactus-1.jpg",
+    src: "/videos/Cactus 1.mp4",
+  },
+  {
+    title: "Cactus 2",
+    description: "Painting process video for Cactus 2.",
+    placeholder: "/images/paintings/cactus-2.jpg",
+    src: "/videos/Cactus 2.mp4",
+  },
+  {
+    title: "Cactus 3",
+    description: "Painting process video for Cactus 3.",
+    placeholder: "/images/paintings/cactus-3.jpg",
+    src: "/videos/Cactus 3.mp4",
   },
   {
     title: "Cactus 5",
-    description: "Watch the creation of the Cactus 5 painting.",
+    description: "Painting process video for Cactus 5.",
     placeholder: "/images/paintings/cactus-5.jpg",
-    src: "/videos/cactus-5.mp4",
+    src: "/videos/Cactus 5.mp4",
   },
   {
-    title: "Video 4",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/taos.jpg",
-    src: "/videos/video-4.mp4",
+    title: "Cactus 6",
+    description: "Painting process video for Cactus 6.",
+    placeholder: "/images/paintings/cactus-6.jpg",
+    src: "/videos/Cactus 6.mp4",
   },
   {
-    title: "Video 5",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/taos-2.jpg",
-    src: "/videos/video-5.mp4",
-  },
-  {
-    title: "Video 6",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/taos-3.jpg",
-    src: "/videos/video-6.mp4",
-  },
-  {
-    title: "Video 7",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/adobe.jpg",
-    src: "/videos/video-7.mp4",
-  },
-  {
-    title: "Video 8",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/adobe-2.jpg",
-    src: "/videos/video-8.mp4",
-  },
-  {
-    title: "Video 9",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/cactus-1.jpg",
-    src: "/videos/video-9.mp4",
-  },
-  {
-    title: "Video 10",
-    description: "Painting process video.",
+    title: "Blossom",
+    description: "Painting process video for Blossom.",
     placeholder: "/images/paintings/blossom.jpg",
-    src: "/videos/video-10.mp4",
+    src: "/videos/Blossom.mp4",
   },
   {
-    title: "Video 11",
-    description: "Painting process video.",
+    title: "Flowers",
+    description: "Painting process video for Flowers.",
     placeholder: "/images/paintings/flowers.jpg",
-    src: "/videos/video-11.mp4",
+    src: "/videos/Flowers.mp4",
   },
   {
-    title: "Video 12",
-    description: "Painting process video.",
+    title: "Flowers 2",
+    description: "Painting process video for Flowers 2.",
+    placeholder: "/images/paintings/flowers-2.jpg",
+    src: "/videos/Flowers 2.mp4",
+  },
+  {
+    title: "Rose 2",
+    description: "Painting process video for Rose 2.",
+    placeholder: "/images/paintings/rose-2.jpg",
+    src: "/videos/Rose 2.mp4",
+  },
+  {
+    title: "Autumn Leaves",
+    description: "Painting process video for Autumn Leaves.",
     placeholder: "/images/paintings/wildflowers.jpg",
-    src: "/videos/video-12.mp4",
-  },
-  {
-    title: "Video 13",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/rose.jpg",
-    src: "/videos/video-13.mp4",
-  },
-  {
-    title: "Video 14",
-    description: "Painting process video.",
-    placeholder: "/images/paintings/piano-and-stairways.jpg",
-    src: "/videos/video-14.mp4",
+    src: "/videos/Autumn Leaves.mp4",
   },
 ];

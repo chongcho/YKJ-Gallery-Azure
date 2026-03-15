@@ -24,11 +24,12 @@ export default function VideoEmbed({
   const hasVideo = src || youtubeId || vimeoId;
 
   if (src) {
+    const videoSrc = src.includes(" ") ? src.split(" ").join("%20") : src;
     return (
       <div>
         <div className="relative w-full aspect-video overflow-hidden bg-warm-gray rounded-sm">
           <video
-            src={src}
+            src={videoSrc}
             controls
             playsInline
             poster={placeholder}
