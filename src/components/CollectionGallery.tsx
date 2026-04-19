@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { categories } from "@/data/paintings";
-import { usePaintings } from "@/lib/useContent";
+import { categories, paintings } from "@/data/paintings";
 import PaintingModal from "./PaintingModal";
 import type { Painting } from "@/data/paintings";
 
 export default function CollectionGallery() {
-  const { paintings, loading } = usePaintings();
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedPainting, setSelectedPainting] = useState<Painting | null>(
     null
@@ -17,14 +15,6 @@ export default function CollectionGallery() {
     activeCategory === "all"
       ? paintings
       : paintings.filter((p) => p.category === activeCategory);
-
-  if (loading) {
-    return (
-      <section className="max-w-7xl mx-auto px-6 py-16 text-center text-text-secondary">
-        Loading collection…
-      </section>
-    );
-  }
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">

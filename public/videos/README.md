@@ -4,7 +4,7 @@
 
 **Options:**
 
-1. **YouTube or Vimeo** — Set `youtubeId` or `vimeoId` on each entry in `src/data/videos.ts` (or use the admin Videos UI with Supabase). No large files in the deploy bundle.
+1. **YouTube or Vimeo** — Set `youtubeId` or `vimeoId` on each entry in `src/data/videos.ts`. No large files in the deploy bundle.
 2. **Local / manual hosting** — Keep `.mp4` files only on your machine under `public/videos/` for local testing; do not commit them. To ship self-hosted video later, use **Azure Blob Storage**, a CDN, or upgrade to a plan with a higher size limit.
 
 Filenames used by `src/data/videos.ts` (add `src` when you host the file):

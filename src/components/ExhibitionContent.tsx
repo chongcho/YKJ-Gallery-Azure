@@ -1,9 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import ExhibitionImage from "./ExhibitionImage";
-import { createClient } from "@/lib/supabase/client";
 
 interface Exhibition {
   id: string;
@@ -16,7 +12,7 @@ interface Exhibition {
   images: { src: string }[];
 }
 
-const staticExhibitions: Exhibition[] = [
+const exhibitions: Exhibition[] = [
   {
     id: "1",
     title: "Seattle Art Fair",
@@ -57,47 +53,6 @@ const staticExhibitions: Exhibition[] = [
 ];
 
 export default function ExhibitionContent() {
-  const [exhibitions, setExhibitions] = useState<Exhibition[]>(staticExhibitions);
-  const [loading, setLoading] = useState(true);
-  const supabase = createClient();
-
-  useEffect(() => {
-    if (!supabase) {
-      setLoading(false);
-      return;
-    }
-    (async () => {
-      const { data: exData } = await supabase
-        .from("exhibitions")
-        .select("*")
-        .order("order", { ascending: true });
-      if (!exData?.length) {
-        setLoading(false);
-        return;
-      }
-      const { data: imgData } = await supabase
-        .from("exhibition_images")
-        .select("*")
-        .in("exhibition_id", exData.map((e) => e.id));
-      const withImages = exData.map((e) => ({
-        ...e,
-        images: (imgData || [])
-          .filter((i) => i.exhibition_id === e.id)
-          .sort((a, b) => a.order - b.order)
-          .map((i) => ({ src: i.src })),
-      }));
-      setExhibitions(withImages);
-    })().finally(() => setLoading(false));
-  }, [supabase]);
-
-  if (loading) {
-    return (
-      <section className="max-w-5xl mx-auto px-6 py-16 text-center text-text-secondary">
-        Loading exhibitions…
-      </section>
-    );
-  }
-
   return (
     <section className="max-w-5xl mx-auto px-6 py-16 space-y-20">
       {exhibitions.map((exhibition) => (
