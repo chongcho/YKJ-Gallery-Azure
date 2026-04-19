@@ -1,0 +1,6 @@
+{
+  "name": "ykj-gallery-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Functions linked to Azure Static Web Apps"
+}
