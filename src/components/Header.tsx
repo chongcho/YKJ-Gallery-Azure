@@ -7,7 +7,7 @@ import { useSwAuth } from "@/hooks/useSwAuth";
 import SwLogoutLink from "./SwLogoutLink";
 
 const navLinks = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Collections" },
   { href: "/artist", label: "Artist" },
   { href: "/exhibition", label: "Exhibition" },
   { href: "/video", label: "Video" },
