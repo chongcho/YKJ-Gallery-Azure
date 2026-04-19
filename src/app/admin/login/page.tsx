@@ -19,10 +19,11 @@ export default function LoginPage() {
           the Azure portal, use the button below to authenticate.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-8">
-          Content editing in the browser still requires API + storage work (see{" "}
-          <code className="text-xs bg-warm-gray px-1">AZURE_ADMIN.md</code> in the
-          repo). Until then, site updates are made in the project source and
-          redeployed.
+          After you sign in, the site header shows your account and a{" "}
+          <strong className="text-text-primary">Log out</strong> link. Content
+          editing in the browser still needs API + storage (see{" "}
+          <code className="text-xs bg-warm-gray px-1">AZURE_ADMIN.md</code>). Until
+          then, updates are made in the repo and redeployed.
         </p>
         <div className="flex flex-col gap-3">
           <a
