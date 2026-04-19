@@ -37,3 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Video files — too large for Azure Static Web Apps free-tier deploy limit (~250MB); add locally or host via YouTube/Vimeo/blob storage
+/public/videos/*.mp4

@@ -78,11 +78,11 @@ export default function VideoContent() {
 
       {!hasEmbeddedVideos && (
         <div className="mb-12 p-4 bg-warm-gray border-l-4 border-gold text-sm text-text-secondary">
-          <strong>To add videos:</strong> Export all 14 videos from Wix Video
-          Manager, then place .mp4 files in{" "}
-          <code className="bg-white px-1">public/videos/</code>. See{" "}
-          <code className="bg-white px-1">public/videos/README.md</code> for
-          expected filenames.
+          <strong>To add videos:</strong> Large .mp4 bundles are not deployed (hosting
+          size limit). Use <strong>YouTube</strong> or <strong>Vimeo</strong> IDs in
+          admin/data, or host files externally and set <code className="bg-white px-1">src</code> in{" "}
+          <code className="bg-white px-1">src/data/videos.ts</code>. See{" "}
+          <code className="bg-white px-1">public/videos/README.md</code>.
         </div>
       )}
 
