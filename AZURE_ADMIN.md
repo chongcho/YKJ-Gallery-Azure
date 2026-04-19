@@ -6,9 +6,7 @@ You can run **authentication and APIs entirely on Azure**:
 |--------|----------------|
 | Sign-in | **Microsoft Entra ID** (Azure AD) via **Azure Static Web Apps** built-in auth |
 | HTTP APIs | **Azure Functions** in the `api/` folder (deployed with the same Static Web App) |
-| Content files / JSON | **Azure Blob Storage** or **Azure Cosmos DB** (or Table Storage)—all first-party Azure |
-
-This repo includes a minimal **Functions** endpoint (`GET /api/userinfo`) so you can confirm auth headers after Entra ID is enabled.
+| Uploaded painting images + manifest | **Azure Blob Storage** |
 
 ## 1. Enable Microsoft Entra ID on your Static Web App
 
@@ -27,7 +25,42 @@ Static Web Apps exposes:
 
 The **Login** page links to `/.auth/login/aad`. That route exists only on Azure after step 1—not when running `next dev` locally.
 
-## 3. Protect admin routes (optional)
+## 3. Blob storage for admin painting uploads
+
+Signed-in users can upload images from the painting modal. The API stores files in a container and keeps a JSON manifest.
+
+### Create a storage account (once)
+
+1. Azure Portal → **Storage accounts** → **Create** (standard, LRS is fine).
+2. After creation: **Security + networking** → allow access from your Static Web App / Functions as needed (default often works with connection string).
+
+### Get a connection string
+
+Storage account → **Access keys** → copy **Connection string** (key1).
+
+### Configure the linked Function App
+
+Your Static Web App has an **API** (Functions) backend. In Portal:
+
+1. Open the **Function App** linked to this Static Web App (or SWA → **API** / **Linked resources**).
+2. **Configuration** → **Application settings** → **New application setting**:
+   - **Name:** `CONTENT_STORAGE_CONNECTION_STRING`
+   - **Value:** the storage connection string from above  
+3. Optional: **Name:** `CONTENT_STORAGE_CONTAINER` — default is `ykj-gallery-content` if omitted.
+4. **Save** (restart may run automatically).
+
+Without `CONTENT_STORAGE_CONNECTION_STRING`, `GET /api/painting-images` returns `{}` and uploads return **503**.
+
+The first upload creates the container with **public blob read** so image URLs work in `<img>` tags.
+
+### APIs
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| GET | `/api/painting-images` | JSON map: `paintingId` → public blob URL |
+| POST | `/api/upload-painting-image` | Body: `{ paintingId, imageBase64, contentType }` — requires signed-in user (`authenticated` role) |
+
+## 4. Protect admin routes (optional)
 
 In `public/staticwebapp.config.json`, you can require authentication for paths (after auth works):
 
@@ -46,26 +79,16 @@ In `public/staticwebapp.config.json`, you can require authentication for paths (
 }
 ```
 
-Adjust paths so public pages stay anonymous-only as needed. Test after Entra ID is live.
+Adjust paths so public pages stay anonymous-only as needed.
 
-## 4. Verify the API + auth
+## 5. Verify the API + auth
 
 After deployment, sign in, then open:
 
 `https://<your-site>.azurestaticapps.net/api/userinfo`
 
-You should see JSON with your identity when the `x-ms-client-principal` header is present.
-
-## 5. Full “edit website content in the browser” (next steps)
-
-That requires:
-
-1. **Storage** — e.g. Blob containers for JSON or images, with connection string / managed identity in **Function App** settings (the API app behind SWA).
-2. **Functions** — authenticated routes that read/write storage (check `x-ms-client-principal` or roles before writes).
-3. **Frontend** — admin UI that calls `/api/...` instead of only static files.
-
-All of that stays on Azure; there is no requirement for Supabase or another vendor.
+You should see JSON with your identity when authenticated.
 
 ## CI/CD
 
-The GitHub workflow deploys `out/` (Next static export) and `api/` (Functions) together via `api_location: "api"`.
+The GitHub workflow runs `npm ci` in `api/`, builds the Next app to `out/`, and deploys both `out/` and `api/` via `api_location: "api"`.

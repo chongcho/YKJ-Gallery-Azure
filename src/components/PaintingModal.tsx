@@ -1,14 +1,52 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Painting } from "@/data/paintings";
+import { useSwAuth } from "@/hooks/useSwAuth";
 
 interface Props {
   painting: Painting;
+  /** Resolved image URL (static path or blob override) */
+  imageSrc: string;
   onClose: () => void;
+  onImageUploaded?: () => void;
 }
 
-export default function PaintingModal({ painting, onClose }: Props) {
+function fileToBase64(file: File): Promise<{ base64: string; contentType: string }> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result as string;
+      const comma = dataUrl.indexOf(",");
+      if (comma === -1) {
+        reject(new Error("Invalid file data"));
+        return;
+      }
+      const header = dataUrl.slice(0, comma);
+      const contentTypeMatch = header.match(/data:([^;]+)/);
+      const contentType = contentTypeMatch
+        ? contentTypeMatch[1]
+        : file.type || "image/jpeg";
+      const base64 = dataUrl.slice(comma + 1);
+      resolve({ base64, contentType });
+    };
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+export default function PaintingModal({
+  painting,
+  imageSrc,
+  onClose,
+  onImageUploaded,
+}: Props) {
+  const { isAuthenticated } = useSwAuth();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [previewKey, setPreviewKey] = useState(0);
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -20,6 +58,42 @@ export default function PaintingModal({ painting, onClose }: Props) {
       document.body.style.overflow = "";
     };
   }, [onClose]);
+
+  async function handleUpload(e: React.FormEvent) {
+    e.preventDefault();
+    const file = fileInputRef.current?.files?.[0];
+    if (!file) {
+      setUploadError("Choose an image file first.");
+      return;
+    }
+    setUploadError(null);
+    setUploading(true);
+    try {
+      const { base64, contentType } = await fileToBase64(file);
+      const res = await fetch("/api/upload-painting-image", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          paintingId: painting.id,
+          imageBase64: base64,
+          contentType,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setUploadError(data.error || `Upload failed (${res.status})`);
+        return;
+      }
+      onImageUploaded?.();
+      setPreviewKey((k) => k + 1);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   return (
     <div
@@ -38,16 +112,50 @@ export default function PaintingModal({ painting, onClose }: Props) {
           &times;
         </button>
 
-        <div className="md:w-3/5 bg-warm-gray flex items-center justify-center p-4">
-          <img
-            src={painting.image}
-            alt={painting.title}
-            className="max-h-[70vh] w-auto object-contain"
-            onError={(e) => {
-              e.currentTarget.src = "/images/placeholder.svg";
-              e.currentTarget.onerror = null;
-            }}
-          />
+        <div className="md:w-3/5 bg-warm-gray flex flex-col p-4 md:min-h-[320px]">
+          <div className="flex-1 flex items-center justify-center min-h-[200px]">
+            <img
+              key={`${imageSrc}-${previewKey}`}
+              src={imageSrc}
+              alt={painting.title}
+              className="max-h-[70vh] w-auto object-contain"
+              onError={(e) => {
+                e.currentTarget.src = "/images/placeholder.svg";
+                e.currentTarget.onerror = null;
+              }}
+            />
+          </div>
+
+          {isAuthenticated && (
+            <form
+              onSubmit={handleUpload}
+              className="mt-4 pt-4 border-t border-medium-gray space-y-2"
+            >
+              <p className="text-xs text-text-secondary">
+                Replace image for this painting (saved to Azure Blob; public URL
+                updates the gallery).
+              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  className="text-xs max-w-full"
+                  disabled={uploading}
+                />
+                <button
+                  type="submit"
+                  disabled={uploading}
+                  className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-gold text-white hover:bg-gold/90 disabled:opacity-50"
+                >
+                  {uploading ? "Uploading…" : "Upload"}
+                </button>
+              </div>
+              {uploadError && (
+                <p className="text-xs text-red-600">{uploadError}</p>
+              )}
+            </form>
+          )}
         </div>
 
         <div className="md:w-2/5 p-8 flex flex-col justify-center">
