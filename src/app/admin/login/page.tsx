@@ -19,8 +19,9 @@ export default function AdminLoginPage() {
         <div className="max-w-sm w-full bg-white p-8 rounded shadow">
           <h1 className="font-serif text-2xl mb-4">Admin Login</h1>
           <p className="text-red-600 text-sm mb-4">
-            Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and
-            NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local
+            Supabase is not configured. For local dev, add NEXT_PUBLIC_SUPABASE_URL and
+            NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local. For production, set those as
+            GitHub Actions repository secrets so the build can embed them.
           </p>
           <Link href="/" className="text-gold hover:underline">
             ← Back to site

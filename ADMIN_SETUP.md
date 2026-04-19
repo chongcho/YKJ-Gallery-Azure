@@ -23,10 +23,25 @@ The YKJ Gallery has an admin panel for managing content (paintings, exhibitions,
 
 ## 4. Configure environment variables
 
+### Local development
+
 1. Copy `.env.example` to `.env.local`
 2. Add your Supabase credentials:
    - `NEXT_PUBLIC_SUPABASE_URL` — from Supabase → Settings → API
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — from Supabase → Settings → API (anon public key)
+
+### Production (GitHub Actions → Azure Static Web Apps)
+
+The site is built in **GitHub Actions**, not on Azure. `NEXT_PUBLIC_*` values are baked into the static bundle at **`npm run build`**, so they must be supplied to that build.
+
+1. In GitHub: open the repo → **Settings** → **Secrets and variables** → **Actions**
+2. Under **Repository secrets**, add:
+   - **`NEXT_PUBLIC_SUPABASE_URL`** — same value as in Supabase → Settings → API (Project URL)
+   - **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** — the **anon** `public` key (safe to expose in the client; it is already public by design)
+
+3. Push to `main` (or re-run the failed workflow). The workflow passes these into the Build step.
+
+**Azure Portal alone** cannot inject `NEXT_PUBLIC_*` into an already-built JavaScript bundle. If you change these keys later, trigger a new deployment so the app rebuilds with the new values.
 
 ## 5. Seed initial data (optional)
 
