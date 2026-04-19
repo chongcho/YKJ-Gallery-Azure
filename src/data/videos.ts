@@ -27,7 +27,7 @@ export const videos: Video[] = [
     title: "Adobe 2",
     description: "Painting process video for Adobe 2.",
     placeholder: "/images/paintings/adobe-2.jpg",
-    src: "/videos/Adobe 2.mp4",
+    // Skipped until file is under GitHub 100MB limit; add src when re-encoded
   },
   {
     title: "Adobe 3",
@@ -51,7 +51,7 @@ export const videos: Video[] = [
     title: "Cactus 3",
     description: "Painting process video for Cactus 3.",
     placeholder: "/images/paintings/cactus-3.jpg",
-    src: "/videos/Cactus 3.mp4",
+    // Skipped until file is under GitHub 100MB limit; add src when re-encoded
   },
   {
     title: "Cactus 5",
