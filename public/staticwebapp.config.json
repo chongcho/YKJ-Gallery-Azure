@@ -23,6 +23,10 @@
     {
       "route": "/contact",
       "rewrite": "/contact.html"
+    },
+    {
+      "route": "/admin/login",
+      "rewrite": "/admin/login.html"
     }
   ],
   "responseOverrides": {
