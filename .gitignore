@@ -40,3 +40,6 @@ next-env.d.ts
 
 # Video files — too large for Azure Static Web Apps free-tier deploy limit (~250MB); add locally or host via YouTube/Vimeo/blob storage
 /public/videos/*.mp4
+!/public/videos/Taos.mp4
+!/public/videos/Cactus.mp4
+!/public/videos/Autumn Leaves.mp4
