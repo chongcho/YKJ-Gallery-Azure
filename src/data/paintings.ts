@@ -11,7 +11,7 @@ export interface Painting {
 export const paintings: Painting[] = [
   {
     id: "taos",
-    title: "Taos",
+    title: "Taos-1",
     category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -20,7 +20,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "taos-2",
-    title: "Taos 2",
+    title: "taos-2",
     category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -29,7 +29,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "taos-3",
-    title: "Taos 3",
+    title: "taos-3",
     category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -38,7 +38,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "adobe",
-    title: "Adobe",
+    title: "Taos-4",
     category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -47,7 +47,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "adobe-2",
-    title: "Adobe 2",
+    title: "Taos-5",
     category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -56,7 +56,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "adobe-3",
-    title: "Adobe 3",
+    title: "Taos-6",
     category: "adobe",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -65,7 +65,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-1",
-    title: "Cactus 1",
+    title: "cactus-1",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -74,7 +74,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-2",
-    title: "Cactus 2",
+    title: "cactus-2",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -83,7 +83,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-3",
-    title: "Cactus 3",
+    title: "cactus-3",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -92,7 +92,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-4",
-    title: "Cactus 4",
+    title: "cactus-4",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -101,7 +101,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-5",
-    title: "Cactus 5",
+    title: "cactus-5",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -110,7 +110,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-6",
-    title: "Cactus 6",
+    title: "cactus-6",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -119,7 +119,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flowers",
-    title: "Flowers",
+    title: "flower-1",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -128,7 +128,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "blossom",
-    title: "Blossom",
+    title: "Apple Flower-1",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -137,7 +137,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "blossom-2",
-    title: "Blossom 2",
+    title: "Apple Flower-2",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -146,7 +146,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "blossom-3",
-    title: "Blossom 3",
+    title: "Apple Flower-3",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -155,7 +155,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "blossom-4",
-    title: "Blossom 4",
+    title: "Apple Flower-4",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -164,7 +164,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "blossom-5",
-    title: "Blossom 5",
+    title: "Apple Flower-5",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -173,7 +173,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "blossom-6",
-    title: "Blossom 6",
+    title: "Apple Flower-6",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -182,7 +182,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "rose",
-    title: "Rose",
+    title: "Apple Flower-7",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -191,7 +191,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "rose-2",
-    title: "Rose 2",
+    title: "Flower-4",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -200,7 +200,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flowers-2",
-    title: "Flowers 2",
+    title: "flower-2",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -209,7 +209,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "wildflowers",
-    title: "Wildflowers",
+    title: "Flower-6",
     category: "flowers",
     year: 2018,
     medium: "Acrylic on canvas",
@@ -218,7 +218,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "piano-and-stairways",
-    title: "Piano and Stairways",
+    title: "Abstract-10",
     category: "other",
     year: 2022,
     medium: "Acrylic on canvas",
@@ -228,7 +228,7 @@ export const paintings: Painting[] = [
   // Imaginary / Fantasy collection (add images to public/images/paintings/)
   {
     id: "hope",
-    title: "Hope",
+    title: "Autumn Leaves-1",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -237,7 +237,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "day-and-night",
-    title: "Day and Night",
+    title: "Moon and cloud 1",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -246,7 +246,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "tails-of-fox-in-fantasy",
-    title: "Tails of fox in fantasy",
+    title: "Fox",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -255,7 +255,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "lotus",
-    title: "Lotus",
+    title: "Flower-9",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -264,7 +264,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "birds-singing",
-    title: "Birds singing",
+    title: "Abstract-8",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -273,7 +273,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "squirrel-holding-acorn",
-    title: "Squirrel holding an acorn",
+    title: "Fruits",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -282,7 +282,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "archeopteryx",
-    title: "Archeopteryx",
+    title: "Witch",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -291,7 +291,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "yachts-on-lake",
-    title: "Yachts on lake",
+    title: "Yacht",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -300,7 +300,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "swimming-fishes",
-    title: "Swimming fishes",
+    title: "Abstract-9",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -309,7 +309,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "ivy",
-    title: "Ivy",
+    title: "Flower-8",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -318,7 +318,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "fishing",
-    title: "Fishing",
+    title: "Soap lake",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -327,7 +327,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "windstorm",
-    title: "Windstorm",
+    title: "Autumn Leaves-2",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -336,7 +336,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cat-and-mirror",
-    title: "Cat and mirror",
+    title: "Hourse",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -345,7 +345,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flowers-in-imagination",
-    title: "Flowers in imagination",
+    title: "Flower-3",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -354,7 +354,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "spaceship",
-    title: "Spaceship",
+    title: "Abstract-6",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -363,7 +363,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "crossing-dimensions",
-    title: "Crossing dimensions",
+    title: "Abstract 11",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -372,7 +372,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "moon-night",
-    title: "Moon night",
+    title: "Moon and cloud 1",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -381,7 +381,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "moon-night-2",
-    title: "Moon night 2",
+    title: "Moon and cloud 2",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -390,7 +390,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "moon-night-3",
-    title: "Moon night 3",
+    title: "Moon and cloud 3",
     category: "imaginary",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -400,7 +400,7 @@ export const paintings: Painting[] = [
   // Additional images currently present in public/images/paintings
   {
     id: "abstract-1",
-    title: "Abstract 1",
+    title: "Abstract-1",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -409,7 +409,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "abstract-2",
-    title: "Abstract 2",
+    title: "Abstract-2",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -418,7 +418,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "abstract-3",
-    title: "Abstract 3",
+    title: "Abstract-3",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -427,7 +427,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "abstract-4",
-    title: "Abstract 4",
+    title: "Abstract-4",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -436,7 +436,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "abstract-5",
-    title: "Abstract 5",
+    title: "Abstract-5",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -445,7 +445,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "abstract-7",
-    title: "Abstract 7",
+    title: "Abstract-7",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -454,7 +454,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cactus-7",
-    title: "Cactus 7",
+    title: "Cactus-7",
     category: "cactus",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -463,7 +463,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cesky-krumlov-1",
-    title: "Cesky Krumlov 1",
+    title: "Cesky Krumlov-1",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -472,7 +472,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "cesky-krumlov-2",
-    title: "Cesky Krumlov 2",
+    title: "Cesky Krumlov-2",
     category: "other",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -481,7 +481,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flower-5",
-    title: "Flower 5",
+    title: "Flower-5",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -490,7 +490,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flower-7",
-    title: "Flower 7",
+    title: "Flower-7",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -499,7 +499,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flower-10",
-    title: "Flower 10",
+    title: "Flower-10",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -508,7 +508,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flower-11",
-    title: "Flower 11",
+    title: "Flower-11",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
@@ -517,7 +517,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flower-12",
-    title: "Flower 12",
+    title: "Flower-12",
     category: "flowers",
     year: 2023,
     medium: "Acrylic on canvas",
