@@ -22,8 +22,8 @@ export default function ArtistPage() {
         <div className="flex flex-col md:flex-row gap-12 items-start">
           <div className="md:w-2/5">
             <img
-              src="/images/paintings/blossom-4.jpg"
-              alt="Young K Jang artwork"
+              src="/Artist%20Profile/Artist-YKJ%20Profile%20Photo.jpg"
+              alt="Young K Jang profile photo"
               className="w-full object-cover shadow-lg"
             />
           </div>
