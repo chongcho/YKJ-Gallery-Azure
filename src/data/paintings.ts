@@ -16,7 +16,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '36" x 48" x 1.5"',
-    image: "/images/paintings/taos.jpg",
+    image: "/images/paintings/Taos-1.jpg",
   },
   {
     id: "taos-2",
@@ -43,7 +43,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '12" x 12" x 1.5"',
-    image: "/images/paintings/adobe.jpg",
+    image: "/images/paintings/Taos-4.jpg",
   },
   {
     id: "adobe-2",
@@ -52,7 +52,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '16" x 20" x 0.75"',
-    image: "/images/paintings/adobe-2.jpg",
+    image: "/images/paintings/Taos-5.jpg",
   },
   {
     id: "adobe-3",
@@ -61,7 +61,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '16" x 20" x 0.75"',
-    image: "/images/paintings/adobe-3.jpg",
+    image: "/images/paintings/Taos-6.jpg",
   },
   {
     id: "cactus-1",
@@ -124,7 +124,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '48" x 48" x 1.5"',
-    image: "/images/paintings/flowers.jpg",
+    image: "/images/paintings/flowers-1.jpg",
   },
   {
     id: "blossom",
@@ -187,7 +187,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '9" x 12" x 1.5"',
-    image: "/images/paintings/rose.jpg",
+    image: "/images/paintings/Blossom-7.png",
   },
   {
     id: "rose-2",
@@ -196,7 +196,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '9" x 12" x 1.5"',
-    image: "/images/paintings/rose-2.jpg",
+    image: "/images/paintings/Flower-4.png",
   },
   {
     id: "flowers-2",
@@ -214,7 +214,7 @@ export const paintings: Painting[] = [
     year: 2018,
     medium: "Acrylic on canvas",
     size: '24" x 36" x 1.5"',
-    image: "/images/paintings/wildflowers.jpg",
+    image: "/images/paintings/Flower-6.jpg",
   },
   {
     id: "piano-and-stairways",
@@ -223,7 +223,7 @@ export const paintings: Painting[] = [
     year: 2022,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/piano-and-stairways.jpg",
+    image: "/images/paintings/Abstract-10.jpg",
   },
   // Imaginary / Fantasy collection (add images to public/images/paintings/)
   {
@@ -233,7 +233,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/hope.jpg",
+    image: "/images/paintings/Autumn Leaves-1.JPG",
   },
   {
     id: "day-and-night",
@@ -242,7 +242,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/day-and-night.jpg",
+    image: "/images/paintings/Moon and cloud 1.jpg",
   },
   {
     id: "tails-of-fox-in-fantasy",
@@ -251,7 +251,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/tails-of-fox-in-fantasy.jpg",
+    image: "/images/paintings/Fox.jpg",
   },
   {
     id: "lotus",
@@ -260,7 +260,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/lotus.jpg",
+    image: "/images/paintings/Flower-9.jpg",
   },
   {
     id: "birds-singing",
@@ -269,7 +269,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/birds-singing.jpg",
+    image: "/images/paintings/Abstract-8.jpg",
   },
   {
     id: "squirrel-holding-acorn",
@@ -278,7 +278,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/squirrel-holding-acorn.jpg",
+    image: "/images/paintings/Fruits.jpg",
   },
   {
     id: "archeopteryx",
@@ -287,7 +287,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/archeopteryx.jpg",
+    image: "/images/paintings/Witch.jpg",
   },
   {
     id: "yachts-on-lake",
@@ -296,7 +296,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/yachts-on-lake.jpg",
+    image: "/images/paintings/Yacht.jpg",
   },
   {
     id: "swimming-fishes",
@@ -305,7 +305,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/swimming-fishes.jpg",
+    image: "/images/paintings/Abstract-9.jpg",
   },
   {
     id: "ivy",
@@ -314,7 +314,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/ivy.jpg",
+    image: "/images/paintings/Flower-8.jpg",
   },
   {
     id: "fishing",
@@ -323,7 +323,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 36"',
-    image: "/images/paintings/fishing.jpg",
+    image: "/images/paintings/Soap lake.jpg",
   },
   {
     id: "windstorm",
@@ -332,7 +332,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/windstorm.jpg",
+    image: "/images/paintings/Autumn Leaves-2.JPG",
   },
   {
     id: "cat-and-mirror",
@@ -341,7 +341,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/cat-and-mirror.jpg",
+    image: "/images/paintings/Hourse.jpg",
   },
   {
     id: "flowers-in-imagination",
@@ -350,7 +350,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/flowers-in-imagination.jpg",
+    image: "/images/paintings/Flowers-3.jpg",
   },
   {
     id: "spaceship",
@@ -359,7 +359,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/spaceship.jpg",
+    image: "/images/paintings/Abstract-6.jpg",
   },
   {
     id: "crossing-dimensions",
@@ -368,7 +368,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 24"',
-    image: "/images/paintings/crossing-dimensions.jpg",
+    image: "/images/paintings/Abstract-11.jpg",
   },
   {
     id: "moon-night",
@@ -377,7 +377,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/moon-night.jpg",
+    image: "/images/paintings/Moon and cloud 1.jpg",
   },
   {
     id: "moon-night-2",
@@ -386,7 +386,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/moon-night-2.jpg",
+    image: "/images/paintings/Moon and cloud 2.jpg",
   },
   {
     id: "moon-night-3",
@@ -395,7 +395,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: '24" x 30"',
-    image: "/images/paintings/moon-night-3.jpg",
+    image: "/images/paintings/Moon and cloud 3.jpg",
   },
 ];
 
