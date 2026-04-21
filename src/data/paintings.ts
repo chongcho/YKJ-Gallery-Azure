@@ -367,7 +367,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Flower-1.jpg",
+    image: "/images/paintings/flower-1.jpg",
   },
   {
     id: "flower-10",
@@ -385,7 +385,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Flower-12.JPG",
+    image: "/images/paintings/Flower-12.jpg",
   },
   {
     id: "flower-2",
@@ -394,7 +394,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Flower-2.jpg",
+    image: "/images/paintings/flower-2.jpg",
   },
   {
     id: "flower-3",
@@ -412,7 +412,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Flower-4.jpg",
+    image: "/images/paintings/Flower-4.JPG",
   },
   {
     id: "flower-6",
@@ -430,7 +430,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Flower-7.JPG",
+    image: "/images/paintings/Flower-7.jpg",
   },
   {
     id: "flower-8",
@@ -439,7 +439,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Flower-8.JPG",
+    image: "/images/paintings/Flower-8.jpg",
   },
   {
     id: "flower-9",
@@ -610,7 +610,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Taos-2.jpg",
+    image: "/images/paintings/taos-2.jpg",
   },
   {
     id: "taos-3",
@@ -619,7 +619,7 @@ export const paintings: Painting[] = [
     year: 2023,
     medium: "Acrylic on canvas",
     size: "Unknown",
-    image: "/images/paintings/Taos-3.jpg",
+    image: "/images/paintings/taos-3.jpg",
   },
   {
     id: "taos-4",
