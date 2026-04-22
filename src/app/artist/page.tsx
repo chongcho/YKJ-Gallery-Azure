@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Artist",
   description:
-    "Young K Jang — contemporary artist pursuing modern-abstract painting for decades. Inspired by people, nature, and the world around us.",
+    "Young K. Jang is a contemporary artist whose modern abstract painting practice spans over a decade, inspired by people, nature, and everyday surroundings.",
 };
 
 export default function ArtistPage() {
@@ -34,17 +34,44 @@ export default function ArtistPage() {
 
             <div className="space-y-4 text-text-secondary leading-relaxed">
               <p>
-                Young K Jang is a contemporary artist, has been pursuing her
-                modern-abstract painting areas for decades. Her paintings are
-                inspired by the people, nature, and things around us. She paints
-                them with unique patterns, lines, and depth of colors on the
-                canvas.
+                Young K. Jang is a contemporary artist whose practice in modern
+                abstract painting spans over a decade. Her work is inspired by
+                people, nature, and everyday surroundings, expressed through
+                distinctive patterns, dynamic lines, and layered color
+                compositions that create depth and emotional resonance.
               </p>
               <p>
-                The implications of each painting may vary by perspectives at
-                the time and environment of the individuals. Young Ky lives in
-                Seattle area, teaches painting the students, keeps her unique
-                identity with seamless ideas and challenges.
+                Her paintings invite open interpretation, allowing meaning to
+                shift depending on the viewer's perspective, context, and
+                moment in time. This fluid relationship between artwork and
+                audience is central to her artistic philosophy.
+              </p>
+              <p>
+                Based in the Seattle area, Young K. Jang is the Executive
+                Artist at THE SPACE, an art studio and gallery in Redmond,
+                Washington. Through this platform, she supports the development
+                of emerging contemporary artists and fosters connections within
+                the art community. In parallel, she has been dedicated to
+                teaching painting since 2010, helping students rediscover
+                creativity and express their ideas on canvas.
+              </p>
+              <p>
+                Her exhibition history includes participation in the Seattle Art
+                Fair (2019, 2022), where she presented her modern abstract
+                works, including the collaborative exhibition "Memories,
+                Moments, Hopes" with renowned Korean pop artist Young-Nam Cho.
+                She has also exhibited in group shows such as THE SPACE Art
+                Exhibition.
+              </p>
+              <p>
+                In addition to her visual work, she is the author of "ART and
+                DESIGN" (2017), a publication featuring her modern abstract
+                works.
+              </p>
+              <p>
+                Through continuous exploration and experimentation, Young K.
+                Jang maintains a distinctive artistic identity, driven by
+                curiosity, innovation, and a commitment to creative growth.
               </p>
             </div>
 
