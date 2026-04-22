@@ -75,19 +75,6 @@ export default function ArtistPage() {
               </p>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-medium-gray">
-              <h3 className="font-serif text-xl mb-3">Details</h3>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
-                <dt className="font-semibold">Medium</dt>
-                <dd className="text-text-secondary">Acrylic on canvas</dd>
-                <dt className="font-semibold">Style</dt>
-                <dd className="text-text-secondary">
-                  Contemporary, Modern Abstract
-                </dd>
-                <dt className="font-semibold">Location</dt>
-                <dd className="text-text-secondary">Seattle, WA, USA</dd>
-              </dl>
-            </div>
           </div>
         </div>
       </section>

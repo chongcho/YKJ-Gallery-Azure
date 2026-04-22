@@ -344,7 +344,7 @@ export const paintings: Painting[] = [
   },
   {
     id: "flower-11",
-    title: "Flower--11",
+    title: "Flower-11",
     category: "flowers",
     year: 2018,
     medium: "Acrylic and Mixed Media on canvas",
