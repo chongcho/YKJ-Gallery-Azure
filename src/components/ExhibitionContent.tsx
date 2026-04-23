@@ -26,7 +26,7 @@ const exhibitions: Exhibition[] = [
     title: "Young K. Jang & Young Nam Cho",
     tagline: "Memories, Moments, Hopes",
     description: null,
-    location: "Lumen Field Event Center, Seattle, WA",
+    location: null,
     images: [
       { src: "/images/exhibition/YNC-1.jpg" },
       { src: "/images/exhibition/YKJ and YNC-2.jpg" },

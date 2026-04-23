@@ -226,15 +226,6 @@ export const paintings: Painting[] = [
     image: "/images/paintings/Abstract-9.jpg",
   },
   {
-    id: "aurora",
-    title: "Aurora",
-    category: "imaginary",
-    year: 2023,
-    medium: "Acrylic on canvas",
-    size: "Unknown",
-    image: "/images/paintings/Aurora.jpg",
-  },
-  {
     id: "autumn-leaves-1",
     title: "Autumn Leaves-1",
     category: "other",
