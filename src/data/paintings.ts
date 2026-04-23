@@ -82,15 +82,6 @@ export const paintings: Painting[] = [
     image: "/images/paintings/Abstract-11.jpg",
   },
   {
-    id: "abstract-12",
-    title: "Abstract-12",
-    category: "other",
-    year: 2018,
-    medium: "Acrylic on canvas",
-    size: "36” x 36”",
-    image: "/images/paintings/Abstract-12.jpg",
-  },
-  {
     id: "abstract-13",
     title: "Abstract-13",
     category: "other",
