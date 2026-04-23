@@ -1,4 +1,3 @@
-import Link from "next/link";
 import ExhibitionImage from "./ExhibitionImage";
 
 interface Exhibition {
@@ -7,8 +6,6 @@ interface Exhibition {
   tagline: string | null;
   description: string | null;
   location: string | null;
-  link: string | null;
-  link_label: string | null;
   images: { src: string }[];
 }
 
@@ -19,8 +16,6 @@ const exhibitions: Exhibition[] = [
     tagline: null,
     description: null,
     location: null,
-    link: "https://seattleartfair.com/",
-    link_label: "Learn More",
     images: [
       { src: "/images/exhibition/Seattle Art Fair 2023.jpg" },
       { src: "/images/exhibition/Seattle Art Fair-Lumen Field.jpg" },
@@ -32,8 +27,6 @@ const exhibitions: Exhibition[] = [
     tagline: "Memories, Moments, Hopes",
     description: null,
     location: "Lumen Field Event Center, Seattle, WA",
-    link: null,
-    link_label: null,
     images: [
       { src: "/images/exhibition/YNC-1.jpg" },
       { src: "/images/exhibition/YKJ and YNC-2.jpg" },
@@ -41,15 +34,14 @@ const exhibitions: Exhibition[] = [
   },
   {
     id: "3",
-    title: "Student Exhibition",
+    title: "THE SPACE Exhibition",
     tagline: null,
-    description: "Student artwork showcase at THE SPACE.",
+    description: null,
     location: null,
-    link: null,
-    link_label: null,
     images: [
-      { src: "/images/exhibition/student-exhibition-1.jpg" },
-      { src: "/images/exhibition/student-exhibition-2.jpg" },
+      { src: "/images/exhibition/THE SPACE Exhibition-1.jpg" },
+      { src: "/images/exhibition/THE SPACE Exhibition-2.jpg" },
+      { src: "/images/exhibition/THE SPACE Exhibition-3.jpg" },
     ],
   },
 ];
@@ -82,29 +74,16 @@ export default function ExhibitionContent() {
             {(exhibition.images || []).map((img, i) => (
               <div
                 key={i}
-                className="overflow-hidden rounded-sm bg-warm-gray aspect-video"
+                className="overflow-hidden rounded-sm bg-warm-gray"
               >
                 <ExhibitionImage
                   src={img.src}
                   alt={`${exhibition.title} ${i + 1}`}
-                  className="w-full h-full object-cover"
+                  className="block w-full h-auto"
                 />
               </div>
             ))}
           </div>
-
-          {exhibition.link && (
-            <div className="text-center mt-8">
-              <Link
-                href={exhibition.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-2.5 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-sm hover:bg-gold hover:text-white transition-colors duration-300"
-              >
-                {exhibition.link_label || "Learn More"}
-              </Link>
-            </div>
-          )}
         </article>
       ))}
     </section>

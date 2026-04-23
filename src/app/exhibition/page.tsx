@@ -4,7 +4,7 @@ import ExhibitionContent from "@/components/ExhibitionContent";
 export const metadata: Metadata = {
   title: "Exhibition",
   description:
-    "YKJ Gallery exhibitions — Seattle Art Fair, Young K. Jang & Young Nam Cho, Student Exhibition.",
+    "YKJ Gallery exhibitions — Seattle Art Fair, Young K. Jang & Young Nam Cho, THE SPACE Exhibition.",
 };
 
 export default function ExhibitionPage() {
