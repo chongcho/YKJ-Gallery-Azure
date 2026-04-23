@@ -43,7 +43,6 @@ const exhibitions: Exhibition[] = [
       { src: "/images/exhibition/Seattle Art Fair 2019-2.jpg" },
       { src: "/images/exhibition/Seattle Art Fair 2019-3.jpg" },
       { src: "/images/exhibition/Seattle Art Fair 2019-4.jpg" },
-      { src: "/images/exhibition/Seattle Art Fair 2019-5.jpg" },
     ],
   },
   {
