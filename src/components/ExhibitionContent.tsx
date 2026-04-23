@@ -53,7 +53,6 @@ const exhibitions: Exhibition[] = [
     description: null,
     location: null,
     images: [
-      { src: "/images/exhibition/THE SPACE Exhibition-1.jpg" },
       { src: "/images/exhibition/THE SPACE Exhibition-2.jpg" },
       { src: "/images/exhibition/THE SPACE Exhibition-3.jpg" },
     ],
