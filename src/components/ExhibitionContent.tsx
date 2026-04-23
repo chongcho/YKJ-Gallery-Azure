@@ -30,12 +30,14 @@ const exhibitions: Exhibition[] = [
     id: "2",
     title: "Young K. Jang & Young Nam Cho",
     tagline: "Memories, Moments, Hopes",
-    description:
-      "THE SPACE Art and Meet. A joint exhibition featuring Young-Nam Cho and Young-Kyung Jang.",
-    location: "Event Center",
+    description: null,
+    location: "Lumen Field Event Center, Seattle, WA",
     link: null,
     link_label: null,
-    images: [{ src: "/images/exhibition/YKJ and YNC-1.jpg" }],
+    images: [
+      { src: "/images/exhibition/YNC-1.jpg" },
+      { src: "/images/exhibition/YKJ and YNC-2.jpg" },
+    ],
   },
   {
     id: "3",
