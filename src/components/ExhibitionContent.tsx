@@ -35,7 +35,7 @@ const exhibitions: Exhibition[] = [
     location: "Event Center",
     link: null,
     link_label: null,
-    images: [{ src: "/images/exhibition/young-k-jang-young-nam-cho.jpg" }],
+    images: [{ src: "/images/exhibition/YKJ and YNC-1.jpg" }],
   },
   {
     id: "3",
