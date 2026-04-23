@@ -22,8 +22,8 @@ const exhibitions: Exhibition[] = [
     link: "https://seattleartfair.com/",
     link_label: "Learn More",
     images: [
-      { src: "/images/exhibition/seattle-art-fair-2023.jpg" },
-      { src: "/images/exhibition/seattle-art-fair-interior.jpg" },
+      { src: "/images/exhibition/Seattle Art Fair 2023.jpg" },
+      { src: "/images/exhibition/Seattle Art Fair-Lumen Field.jpg" },
     ],
   },
   {
