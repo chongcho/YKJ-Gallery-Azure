@@ -12,7 +12,7 @@ interface Exhibition {
 const exhibitions: Exhibition[] = [
   {
     id: "1",
-    title: "Seattle Art Fair",
+    title: "Seattle Art Fair 2023",
     tagline: null,
     description: null,
     location: null,
@@ -34,20 +34,6 @@ const exhibitions: Exhibition[] = [
   },
   {
     id: "3",
-    title: "Seattle Art Fair 2019",
-    tagline: null,
-    description: null,
-    location: null,
-    images: [
-      { src: "/images/exhibition/Seattle Art Fair 2019-1.jpg" },
-      { src: "/images/exhibition/Seattle Art Fair 2019-2.jpg" },
-      { src: "/images/exhibition/Seattle Art Fair 2019-3.jpg" },
-      { src: "/images/exhibition/Seattle Art Fair 2019-4.jpg" },
-      { src: "/images/exhibition/Seattle Art Fair 2019-5.jpg" },
-    ],
-  },
-  {
-    id: "4",
     title: "THE SPACE Exhibition",
     tagline: null,
     description: null,
