@@ -78,6 +78,50 @@ export default function ArtistPage() {
           </div>
         </div>
       </section>
+
+      <section className="max-w-5xl mx-auto px-6 pb-20">
+        <h2 className="font-serif text-3xl mb-2">Artist Statement</h2>
+        <div className="w-12 h-0.5 bg-gold mb-6" />
+        <div className="space-y-4 text-text-secondary leading-relaxed">
+          <p>
+            My work is a dialogue between the external landscapes that inspire
+            me and the internal abstractions that emerge from them. I move
+            fluidly between representation and abstraction, allowing each mode
+            to inform the other. The cactus and Taos series reflect my
+            fascination with place, its resilience, architecture, and cultural
+            resonance, while the Blossom and Flower paintings explore the
+            intimate beauty of organic forms, growth, and renewal.
+          </p>
+          <p>
+            The Abstract series represents my pursuit of pure form, color, and
+            texture. These works are not bound by recognizable imagery but
+            instead invite viewers to experience emotion and rhythm directly. By
+            shifting between figurative and abstract approaches, I seek to
+            capture both the tangible and intangible qualities of the world
+            around us.
+          </p>
+          <p>
+            Scale plays an important role in my practice. Smaller canvases allow
+            for intimate studies, while larger works create immersive
+            environments that envelop the viewer. This variation reflects my
+            belief that art should exist on multiple levels, personal,
+            monumental, and everything in between.
+          </p>
+          <p>
+            Travel and cultural encounters also shape my work. From the deserts
+            of the American Southwest to the historic streets of Cesky Krumlov,
+            I draw inspiration from diverse geographies. Each place leaves an
+            imprint, becoming part of the visual and emotional vocabulary I
+            bring to the canvas.
+          </p>
+          <p>
+            Ultimately, my paintings are explorations of contrast: nature and
+            geometry, intimacy and scale, representation and abstraction. They
+            are invitations to see the world both as it is and as it might be
+            reimagined through color, form, and feeling.
+          </p>
+        </div>
+      </section>
     </>
   );
 }
