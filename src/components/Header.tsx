@@ -49,8 +49,6 @@ export default function Header() {
             );
           })}
 
-          <span className="h-4 w-px bg-medium-gray hidden lg:block" aria-hidden />
-
           {loading ? (
             <span className="text-xs text-text-secondary w-16 text-right">…</span>
           ) : isAuthenticated ? (
