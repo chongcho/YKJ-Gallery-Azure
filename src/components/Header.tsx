@@ -26,7 +26,6 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { loading, label, isAuthenticated } = useSwAuth();
-  const loginActive = pathname === "/admin/login";
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-medium-gray">
@@ -66,11 +65,7 @@ export default function Header() {
                 Log out
               </SwLogoutLink>
             </div>
-          ) : (
-            <Link href="/admin/login" className={authLinkClass(loginActive)}>
-              Login
-            </Link>
-          )}
+          ) : null}
         </nav>
 
         {/* Mobile hamburger */}
@@ -130,19 +125,7 @@ export default function Header() {
                   Log out
                 </SwLogoutLink>
               </>
-            ) : (
-              <Link
-                href="/admin/login"
-                onClick={() => setMobileOpen(false)}
-                className={`block py-2 text-sm tracking-widest uppercase ${
-                  loginActive
-                    ? "text-gold font-semibold"
-                    : "text-text-secondary hover:text-gold"
-                }`}
-              >
-                Login
-              </Link>
-            )}
+            ) : null}
           </div>
         </nav>
       )}
