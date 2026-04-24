@@ -343,15 +343,6 @@ export const paintings: Painting[] = [
     image: "/images/paintings/Flower-4.JPG",
   },
   {
-    id: "golf",
-    title: "Golf",
-    category: "other",
-    year: 2023,
-    medium: "Acrylic on canvas",
-    size: "24” x 24”",
-    image: "/images/paintings/Golf.jpg",
-  },
-  {
     id: "moon-over-cloud-1",
     title: "Moon over cloud-1",
     category: "imaginary",
