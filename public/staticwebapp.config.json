@@ -5,6 +5,74 @@
   },
   "routes": [
     {
+      "route": "/readyz",
+      "statusCode": 404
+    },
+    {
+      "route": "/healthz",
+      "statusCode": 404
+    },
+    {
+      "route": "/health",
+      "statusCode": 404
+    },
+    {
+      "route": "/management*",
+      "statusCode": 404
+    },
+    {
+      "route": "/manage*",
+      "statusCode": 404
+    },
+    {
+      "route": "/actuator*",
+      "statusCode": 404
+    },
+    {
+      "route": "/swagger*",
+      "statusCode": 404
+    },
+    {
+      "route": "/openapi*",
+      "statusCode": 404
+    },
+    {
+      "route": "/v3/api-docs*",
+      "statusCode": 404
+    },
+    {
+      "route": "/redoc*",
+      "statusCode": 404
+    },
+    {
+      "route": "/scalar*",
+      "statusCode": 404
+    },
+    {
+      "route": "/kubeconfig",
+      "statusCode": 404
+    },
+    {
+      "route": "/NuGet.Config",
+      "statusCode": 404
+    },
+    {
+      "route": "/applicationHost.config",
+      "statusCode": 404
+    },
+    {
+      "route": "/Properties/launchSettings.json",
+      "statusCode": 404
+    },
+    {
+      "route": "/local.settings.json",
+      "statusCode": 404
+    },
+    {
+      "route": "/docs*",
+      "statusCode": 404
+    },
+    {
       "route": "/artist",
       "rewrite": "/artist.html"
     },
