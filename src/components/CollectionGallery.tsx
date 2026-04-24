@@ -13,11 +13,8 @@ export default function CollectionGallery() {
   );
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
-      <div
-        className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6"
-        style={{ columnFill: "balance" }}
-      >
+    <section className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10 sm:py-12 md:py-16">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6">
         {paintings.map((painting) => {
           const src = overrides[painting.id] ?? painting.image;
           return (
@@ -25,7 +22,7 @@ export default function CollectionGallery() {
               key={painting.id}
               id={painting.id}
               onClick={() => setSelectedPainting(painting)}
-              className="group text-left break-inside-avoid mb-6 block w-full"
+              className="group text-left block w-full"
             >
               <div className="overflow-hidden bg-warm-gray rounded-sm">
                 <img
@@ -40,10 +37,10 @@ export default function CollectionGallery() {
                   }}
                 />
               </div>
-              <h3 className="font-serif text-base mt-2 group-hover:text-gold transition-colors">
+              <h3 className="font-serif text-sm sm:text-base mt-2 group-hover:text-gold transition-colors">
                 {painting.title}
               </h3>
-              <p className="text-xs text-text-secondary">{painting.size}</p>
+              <p className="text-xs sm:text-sm text-text-secondary">{painting.size}</p>
             </button>
           );
         })}
