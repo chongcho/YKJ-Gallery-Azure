@@ -163,21 +163,21 @@ export default function PaintingModal({
           <div className="w-10 h-0.5 bg-gold mb-6" />
 
           <dl className="space-y-3 text-sm">
-            <div>
-              <dt className="font-semibold">Artist</dt>
-              <dd className="text-text-secondary">Young K. Jang</dd>
+            <div className="flex items-start justify-between gap-4">
+              <dt className="font-semibold shrink-0">Artist</dt>
+              <dd className="text-text-secondary text-right">Young K. Jang</dd>
             </div>
-            <div>
-              <dt className="font-semibold">Year</dt>
-              <dd className="text-text-secondary">{painting.year}</dd>
+            <div className="flex items-start justify-between gap-4">
+              <dt className="font-semibold shrink-0">Year</dt>
+              <dd className="text-text-secondary text-right">{painting.year}</dd>
             </div>
-            <div>
-              <dt className="font-semibold">Medium</dt>
-              <dd className="text-text-secondary">{painting.medium}</dd>
+            <div className="flex items-start justify-between gap-4">
+              <dt className="font-semibold shrink-0">Medium</dt>
+              <dd className="text-text-secondary text-right">{painting.medium}</dd>
             </div>
-            <div>
-              <dt className="font-semibold">Size</dt>
-              <dd className="text-text-secondary">{painting.size}</dd>
+            <div className="flex items-start justify-between gap-4">
+              <dt className="font-semibold shrink-0">Size</dt>
+              <dd className="text-text-secondary text-right">{painting.size}</dd>
             </div>
           </dl>
 
@@ -187,6 +187,14 @@ export default function PaintingModal({
           >
             Inquire
           </a>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="mt-3 md:hidden inline-block px-6 py-2.5 border-2 border-medium-gray text-text-primary font-semibold tracking-wider uppercase text-sm hover:bg-medium-gray/40 transition-colors duration-300 text-center"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
