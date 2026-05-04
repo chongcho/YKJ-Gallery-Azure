@@ -11,6 +11,6 @@ Filenames used by `src/data/videos.ts` (add `src` when you host the file):
 
 - `Taos.mp4`, `Adobe 1.mp4`, `Adobe 2.mp4`, `Adobe 3.mp4`
 - `Cactus 1.mp4` … `Cactus 6.mp4` (excluding unused numbers if any)
-- `Blossom.mp4`, `Flowers.mp4`, `Flowers 2.mp4`, `Rose 2.mp4`, `Autumn Leaves.mp4`
+- `Blossom.mp4`, `Flowers.mp4`, `Flowers 2.mp4`, `Rose 2.mp4`, `Autumn Leaves.mp4`, `Golf.mp4`
 
 Supported formats: **mp4**, **webm**

@@ -1,5 +1,15 @@
 "use client";
 
+/** Encode path segments so spaces and special characters in `/public/...` URLs load reliably. */
+function publicAssetUrl(path: string) {
+  if (!path) return path;
+  if (/^https?:\/\//i.test(path)) return path;
+  return path
+    .split("/")
+    .map((segment) => (segment ? encodeURIComponent(segment) : ""))
+    .join("/");
+}
+
 interface VideoEmbedProps {
   title: string;
   /** Path to local video file (e.g. /videos/adobe-3a.mp4) */
@@ -24,7 +34,8 @@ export default function VideoEmbed({
   const hasVideo = src || youtubeId || vimeoId;
 
   if (src) {
-    const videoSrc = src.includes(" ") ? src.split(" ").join("%20") : src;
+    const videoSrc = publicAssetUrl(src);
+    const posterUrl = publicAssetUrl(placeholder);
     return (
       <div>
         <div className="relative w-full aspect-video overflow-hidden bg-warm-gray rounded-sm">
@@ -32,7 +43,7 @@ export default function VideoEmbed({
             src={videoSrc}
             controls
             playsInline
-            poster={placeholder}
+            poster={posterUrl}
             className="w-full h-full object-contain"
           >
             Your browser does not support the video tag.
@@ -84,7 +95,7 @@ export default function VideoEmbed({
     <div className="group">
       <div className="relative overflow-hidden bg-warm-gray rounded-sm">
         <img
-          src={placeholder}
+          src={publicAssetUrl(placeholder)}
           alt={title}
           className="w-full aspect-video object-cover opacity-80 group-hover:opacity-100 transition-opacity"
           loading="lazy"

@@ -21,7 +21,7 @@ export const videos: Video[] = [
   {
     title: "Cactus",
     description: "Painting process video for Cactus.",
-    placeholder: "/images/paintings/cactus-1.jpg",
+    placeholder: "/images/paintings/Cactus in vase.jpg",
     src: "/videos/Cactus.mp4",
   },
   {
