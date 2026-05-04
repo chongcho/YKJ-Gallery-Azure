@@ -30,4 +30,10 @@ export const videos: Video[] = [
     placeholder: "/images/paintings/Autumn Leaves-1.JPG",
     src: "/videos/Autumn Leaves.mp4",
   },
+  {
+    title: "Golf",
+    description: "Painting process video for Golf.",
+    placeholder: "/images/paintings/Golf.jpg",
+    src: "/videos/Golf.mp4",
+  },
 ];
