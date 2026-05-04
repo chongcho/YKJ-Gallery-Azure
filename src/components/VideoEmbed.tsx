@@ -1,13 +1,17 @@
 "use client";
 
-/** Encode path segments so spaces and special characters in `/public/...` URLs load reliably. */
+/** Encode path segments so spaces and special characters in `/public/...` URLs load reliably. Preserves `?query`. */
 function publicAssetUrl(path: string) {
   if (!path) return path;
   if (/^https?:\/\//i.test(path)) return path;
-  return path
+  const q = path.indexOf("?");
+  const pathPart = q === -1 ? path : path.slice(0, q);
+  const query = q === -1 ? "" : path.slice(q);
+  const encodedPath = pathPart
     .split("/")
     .map((segment) => (segment ? encodeURIComponent(segment) : ""))
     .join("/");
+  return encodedPath + query;
 }
 
 interface VideoEmbedProps {
@@ -40,12 +44,22 @@ export default function VideoEmbed({
       <div>
         <div className="relative w-full aspect-video overflow-hidden bg-warm-gray rounded-sm">
           <video
-            src={videoSrc}
             controls
             playsInline
             poster={posterUrl}
+            preload="metadata"
             className="w-full h-full object-contain"
+            onError={(e) => {
+              const media = e.currentTarget;
+              const code = media.error?.code;
+              const msg = media.error?.message;
+              console.error(
+                `[Video] failed to load: ${title}`,
+                { src: videoSrc, code, message: msg }
+              );
+            }}
           >
+            <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

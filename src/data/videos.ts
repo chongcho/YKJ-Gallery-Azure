@@ -10,30 +10,33 @@ export interface Video {
   vimeoId?: string;
 }
 
+/** Bust browser caches after video or CDN header changes (bump when replacing MP4s). */
+const VIDEO_ASSET_Q = "v=2026-05-04";
+
 /** Local `src` omitted: Azure Static Web Apps free tier limits deploy size (~250MB); large MP4s are not bundled. Add `src` when hosting elsewhere or after upgrading plan. */
 export const videos: Video[] = [
   {
     title: "Taos",
     description: "Painting process video for the Taos series.",
     placeholder: "/images/paintings/Taos-1.jpg",
-    src: "/videos/Taos.mp4",
+    src: `/videos/Taos.mp4?${VIDEO_ASSET_Q}`,
   },
   {
     title: "Cactus",
     description: "Painting process video for Cactus.",
     placeholder: "/images/paintings/Cactus in vase.jpg",
-    src: "/videos/Cactus.mp4",
+    src: `/videos/Cactus.mp4?${VIDEO_ASSET_Q}`,
   },
   {
     title: "Autumn Leaves",
     description: "Painting process video for Autumn Leaves.",
     placeholder: "/images/paintings/Autumn Leaves-1.JPG",
-    src: "/videos/Autumn Leaves.mp4",
+    src: `/videos/Autumn Leaves.mp4?${VIDEO_ASSET_Q}`,
   },
   {
     title: "Golf",
     description: "Painting process video for Golf.",
     placeholder: "/images/paintings/Golf.jpg",
-    src: "/videos/Golf.mp4",
+    src: `/videos/Golf.mp4?${VIDEO_ASSET_Q}`,
   },
 ];
