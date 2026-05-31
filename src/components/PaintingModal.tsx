@@ -142,11 +142,11 @@ export default function PaintingModal({
             e.stopPropagation();
             onPrevious?.();
           }}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 text-white/70 hover:text-white transition-colors"
+          className="absolute bottom-6 left-4 z-30 p-2 text-white/70 hover:text-white transition-colors md:bottom-auto md:left-4 md:top-1/2 md:-translate-y-1/2 md:p-3"
           aria-label="Previous artwork"
         >
           <svg
-            className="w-8 h-8 sm:w-10 sm:h-10"
+            className="w-8 h-8 md:w-10 md:h-10"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -169,11 +169,11 @@ export default function PaintingModal({
             e.stopPropagation();
             onNext?.();
           }}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 text-white/70 hover:text-white transition-colors"
+          className="absolute bottom-6 right-4 z-30 p-2 text-white/70 hover:text-white transition-colors md:bottom-auto md:right-4 md:top-1/2 md:-translate-y-1/2 md:p-3"
           aria-label="Next artwork"
         >
           <svg
-            className="w-8 h-8 sm:w-10 sm:h-10"
+            className="w-8 h-8 md:w-10 md:h-10"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
