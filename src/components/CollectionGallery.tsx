@@ -37,7 +37,7 @@ export default function CollectionGallery() {
             <div
               key={painting.id}
               id={painting.id}
-              className="group text-left block w-full"
+              className="group text-left block w-[70%] mx-auto"
             >
               <button
                 type="button"
