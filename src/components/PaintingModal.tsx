@@ -97,105 +97,107 @@ export default function PaintingModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-      onClick={onClose}
+      className="fixed inset-0 z-[100] flex flex-col bg-black"
+      role="dialog"
+      aria-modal="true"
+      aria-label={painting.title}
     >
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute top-4 right-4 z-30 text-3xl leading-none text-white/80 hover:text-white transition-colors"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+
       <div
-        className="relative bg-white max-w-4xl w-full max-h-[90vh] overflow-auto flex flex-col md:flex-row"
+        className="relative flex-1 flex items-center justify-center min-h-0 w-full p-4 sm:p-6 md:p-10"
+        onClick={onClose}
+      >
+        <img
+          key={`${imageSrc}-${previewKey}`}
+          src={imageSrc}
+          alt={painting.title}
+          className="max-h-full max-w-full object-contain select-none"
+          draggable={false}
+          onClick={(e) => e.stopPropagation()}
+          onError={(e) => {
+            e.currentTarget.src = "/images/placeholder.svg";
+            e.currentTarget.onerror = null;
+          }}
+        />
+      </div>
+
+      <div
+        className="relative z-20 shrink-0 bg-gradient-to-t from-black via-black/95 to-transparent px-4 sm:px-6 md:px-10 pt-10 pb-5 sm:pb-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-4 text-3xl text-text-secondary hover:text-text-primary z-10"
-          aria-label="Close"
-        >
-          &times;
-        </button>
+        <div className="max-w-5xl mx-auto flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-1">
+              {painting.title}
+            </h2>
+            <div className="w-10 h-0.5 bg-gold mb-4" />
 
-        <div className="md:w-3/5 bg-warm-gray flex flex-col p-4 md:min-h-[320px]">
-          <div className="flex-1 flex items-center justify-center min-h-[200px]">
-            <img
-              key={`${imageSrc}-${previewKey}`}
-              src={imageSrc}
-              alt={painting.title}
-              className="max-h-[70vh] w-auto object-contain"
-              onError={(e) => {
-                e.currentTarget.src = "/images/placeholder.svg";
-                e.currentTarget.onerror = null;
-              }}
-            />
-          </div>
-
-          {isAuthenticated && (
-            <form
-              onSubmit={handleUpload}
-              className="mt-4 pt-4 border-t border-medium-gray space-y-2"
-            >
-              <p className="text-xs text-text-secondary">
-                Replace image for this painting (saved to Azure Blob; public URL
-                updates the gallery).
-              </p>
-              <div className="flex flex-wrap items-center gap-2">
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp,image/gif"
-                  className="text-xs max-w-full"
-                  disabled={uploading}
-                />
-                <button
-                  type="submit"
-                  disabled={uploading}
-                  className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-gold text-white hover:bg-gold/90 disabled:opacity-50"
-                >
-                  {uploading ? "Uploading…" : "Upload"}
-                </button>
+            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-2 text-sm">
+              <div>
+                <dt className="font-semibold text-white/70">Artist</dt>
+                <dd className="text-white/90">Young K. Jang</dd>
               </div>
-              {uploadError && (
-                <p className="text-xs text-red-600">{uploadError}</p>
-              )}
-            </form>
-          )}
-        </div>
-
-        <div className="md:w-2/5 p-8 flex flex-col justify-center">
-          <h2 className="font-serif text-3xl mb-1">{painting.title}</h2>
-          <div className="w-10 h-0.5 bg-gold mb-6" />
-
-          <dl className="space-y-3 text-sm">
-            <div className="flex items-start justify-between gap-4">
-              <dt className="font-semibold shrink-0">Artist</dt>
-              <dd className="text-text-secondary text-right">Young K. Jang</dd>
-            </div>
-            <div className="flex items-start justify-between gap-4">
-              <dt className="font-semibold shrink-0">Year</dt>
-              <dd className="text-text-secondary text-right">{painting.year}</dd>
-            </div>
-            <div className="flex items-start justify-between gap-4">
-              <dt className="font-semibold shrink-0">Medium</dt>
-              <dd className="text-text-secondary text-right">{painting.medium}</dd>
-            </div>
-            <div className="flex items-start justify-between gap-4">
-              <dt className="font-semibold shrink-0">Size</dt>
-              <dd className="text-text-secondary text-right">{painting.size}</dd>
-            </div>
-          </dl>
+              <div>
+                <dt className="font-semibold text-white/70">Year</dt>
+                <dd className="text-white/90">{painting.year}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-white/70">Medium</dt>
+                <dd className="text-white/90">{painting.medium}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-white/70">Size</dt>
+                <dd className="text-white/90">{painting.size}</dd>
+              </div>
+            </dl>
+          </div>
 
           <a
             href={`mailto:ykj@ykjgallery.com?subject=Inquiry about ${painting.title}`}
-            className="mt-8 inline-block px-6 py-2.5 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-sm hover:bg-gold hover:text-white transition-colors duration-300 text-center"
+            className="shrink-0 inline-block px-6 py-2.5 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-sm hover:bg-gold hover:text-white transition-colors duration-300 text-center"
           >
             Inquire
           </a>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="mt-3 md:hidden inline-block px-6 py-2.5 border-2 border-medium-gray text-text-primary font-semibold tracking-wider uppercase text-sm hover:bg-medium-gray/40 transition-colors duration-300 text-center"
-          >
-            Close
-          </button>
         </div>
+
+        {isAuthenticated && (
+          <form
+            onSubmit={handleUpload}
+            className="max-w-5xl mx-auto mt-4 pt-4 border-t border-white/20 space-y-2"
+          >
+            <p className="text-xs text-white/60">
+              Replace image for this painting (saved to Azure Blob; public URL
+              updates the gallery).
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                className="text-xs max-w-full text-white"
+                disabled={uploading}
+              />
+              <button
+                type="submit"
+                disabled={uploading}
+                className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-gold text-white hover:bg-gold/90 disabled:opacity-50"
+              >
+                {uploading ? "Uploading…" : "Upload"}
+              </button>
+            </div>
+            {uploadError && (
+              <p className="text-xs text-red-400">{uploadError}</p>
+            )}
+          </form>
+        )}
       </div>
     </div>
   );
