@@ -58,20 +58,22 @@ export default function CollectionGallery() {
                   />
                 </div>
               </button>
-              <h3 className="font-serif text-sm sm:text-base mt-2 group-hover:text-gold transition-colors">
-                {painting.title}
-              </h3>
+              <div className="mt-2 flex items-center justify-between gap-2">
+                <h3 className="font-serif text-sm sm:text-base group-hover:text-gold transition-colors min-w-0">
+                  {painting.title}
+                </h3>
+                <a
+                  href={`mailto:ykj@ykjgallery.com?subject=Inquiry about ${painting.title}`}
+                  className="shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-xs hover:bg-gold hover:text-white transition-colors duration-300"
+                >
+                  Inquire
+                </a>
+              </div>
               <div className="text-xs sm:text-sm text-text-secondary space-y-0.5 mt-0.5">
                 <p>{painting.year}</p>
                 <p>{painting.medium}</p>
                 <p>{painting.size}</p>
               </div>
-              <a
-                href={`mailto:ykj@ykjgallery.com?subject=Inquiry about ${painting.title}`}
-                className="mt-3 inline-block px-4 py-2 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-xs hover:bg-gold hover:text-white transition-colors duration-300"
-              >
-                Inquire
-              </a>
             </div>
           );
         })}
