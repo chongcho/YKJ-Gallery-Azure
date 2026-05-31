@@ -40,7 +40,11 @@ export default function CollectionGallery() {
               <h3 className="font-serif text-sm sm:text-base mt-2 group-hover:text-gold transition-colors">
                 {painting.title}
               </h3>
-              <p className="text-xs sm:text-sm text-text-secondary">{painting.size}</p>
+              <div className="text-xs sm:text-sm text-text-secondary space-y-0.5 mt-0.5">
+                <p>{painting.year}</p>
+                <p>{painting.medium}</p>
+                <p>{painting.size}</p>
+              </div>
             </button>
           );
         })}
