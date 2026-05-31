@@ -12,31 +12,52 @@ export default function CollectionGallery() {
     null
   );
 
+  const selectedIndex = selectedPainting
+    ? paintings.findIndex((p) => p.id === selectedPainting.id)
+    : -1;
+
+  function goToPrevious() {
+    if (selectedIndex > 0) {
+      setSelectedPainting(paintings[selectedIndex - 1]);
+    }
+  }
+
+  function goToNext() {
+    if (selectedIndex >= 0 && selectedIndex < paintings.length - 1) {
+      setSelectedPainting(paintings[selectedIndex + 1]);
+    }
+  }
+
   return (
     <section className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10 sm:py-12 md:py-16">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6">
         {paintings.map((painting) => {
           const src = overrides[painting.id] ?? painting.image;
           return (
-            <button
+            <div
               key={painting.id}
               id={painting.id}
-              onClick={() => setSelectedPainting(painting)}
               className="group text-left block w-full"
             >
-              <div className="overflow-hidden bg-warm-gray rounded-sm">
-                <img
-                  src={src}
-                  alt={painting.title}
-                  className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                  loading="lazy"
-                  style={{ display: "block" }}
-                  onError={(e) => {
-                    e.currentTarget.src = "/images/placeholder.svg";
-                    e.currentTarget.onerror = null;
-                  }}
-                />
-              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedPainting(painting)}
+                className="block w-full text-left"
+              >
+                <div className="overflow-hidden bg-warm-gray rounded-sm">
+                  <img
+                    src={src}
+                    alt={painting.title}
+                    className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    style={{ display: "block" }}
+                    onError={(e) => {
+                      e.currentTarget.src = "/images/placeholder.svg";
+                      e.currentTarget.onerror = null;
+                    }}
+                  />
+                </div>
+              </button>
               <h3 className="font-serif text-sm sm:text-base mt-2 group-hover:text-gold transition-colors">
                 {painting.title}
               </h3>
@@ -45,16 +66,26 @@ export default function CollectionGallery() {
                 <p>{painting.medium}</p>
                 <p>{painting.size}</p>
               </div>
-            </button>
+              <a
+                href={`mailto:ykj@ykjgallery.com?subject=Inquiry about ${painting.title}`}
+                className="mt-3 inline-block px-4 py-2 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-xs hover:bg-gold hover:text-white transition-colors duration-300"
+              >
+                Inquire
+              </a>
+            </div>
           );
         })}
       </div>
 
-      {selectedPainting && (
+      {selectedPainting && selectedIndex >= 0 && (
         <PaintingModal
           painting={selectedPainting}
           imageSrc={overrides[selectedPainting.id] ?? selectedPainting.image}
           onClose={() => setSelectedPainting(null)}
+          onPrevious={goToPrevious}
+          onNext={goToNext}
+          hasPrevious={selectedIndex > 0}
+          hasNext={selectedIndex < paintings.length - 1}
           onImageUploaded={refresh}
         />
       )}

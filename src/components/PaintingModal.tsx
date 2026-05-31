@@ -9,6 +9,10 @@ interface Props {
   /** Resolved image URL (static path or blob override) */
   imageSrc: string;
   onClose: () => void;
+  onPrevious?: () => void;
+  onNext?: () => void;
+  hasPrevious?: boolean;
+  hasNext?: boolean;
   onImageUploaded?: () => void;
 }
 
@@ -39,6 +43,10 @@ export default function PaintingModal({
   painting,
   imageSrc,
   onClose,
+  onPrevious,
+  onNext,
+  hasPrevious = false,
+  hasNext = false,
   onImageUploaded,
 }: Props) {
   const { isAuthenticated } = useSwAuth();
@@ -48,16 +56,24 @@ export default function PaintingModal({
   const [previewKey, setPreviewKey] = useState(0);
 
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && hasPrevious) onPrevious?.();
+      if (e.key === "ArrowRight" && hasNext) onNext?.();
     };
-    document.addEventListener("keydown", handleEsc);
+    document.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
     return () => {
-      document.removeEventListener("keydown", handleEsc);
+      document.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, onPrevious, onNext, hasPrevious, hasNext]);
+
+  useEffect(() => {
+    setPreviewKey(0);
+    setUploadError(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, [painting.id]);
 
   async function handleUpload(e: React.FormEvent) {
     e.preventDefault();
@@ -97,10 +113,11 @@ export default function PaintingModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col bg-black"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
       role="dialog"
       aria-modal="true"
       aria-label={painting.title}
+      onClick={onClose}
     >
       <button
         type="button"
@@ -111,94 +128,111 @@ export default function PaintingModal({
         &times;
       </button>
 
-      <div
-        className="relative flex-1 flex items-center justify-center min-h-0 w-full p-4 sm:p-6 md:p-10"
-        onClick={onClose}
-      >
-        <img
-          key={`${imageSrc}-${previewKey}`}
-          src={imageSrc}
-          alt={painting.title}
-          className="max-h-full max-w-full object-contain select-none"
-          draggable={false}
-          onClick={(e) => e.stopPropagation()}
-          onError={(e) => {
-            e.currentTarget.src = "/images/placeholder.svg";
-            e.currentTarget.onerror = null;
+      <div className="absolute top-0 left-0 right-0 z-30 pointer-events-none bg-gradient-to-b from-black/70 to-transparent px-16 pt-5 pb-10">
+        <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-white text-center">
+          {painting.title}
+        </h2>
+        <div className="w-10 h-0.5 bg-gold mx-auto mt-2" />
+      </div>
+
+      {hasPrevious && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onPrevious?.();
           }}
-        />
-      </div>
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 text-white/70 hover:text-white transition-colors"
+          aria-label="Previous artwork"
+        >
+          <svg
+            className="w-8 h-8 sm:w-10 sm:h-10"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+      )}
 
-      <div
-        className="relative z-20 shrink-0 bg-gradient-to-t from-black via-black/95 to-transparent px-4 sm:px-6 md:px-10 pt-10 pb-5 sm:pb-6"
+      {hasNext && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext?.();
+          }}
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 text-white/70 hover:text-white transition-colors"
+          aria-label="Next artwork"
+        >
+          <svg
+            className="w-8 h-8 sm:w-10 sm:h-10"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      )}
+
+      <img
+        key={`${imageSrc}-${previewKey}`}
+        src={imageSrc}
+        alt={painting.title}
+        className="max-h-full max-w-full object-contain select-none p-4 sm:p-6 md:p-10"
+        draggable={false}
         onClick={(e) => e.stopPropagation()}
-      >
-        <div className="max-w-5xl mx-auto flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="font-serif text-2xl sm:text-3xl text-white mb-1">
-              {painting.title}
-            </h2>
-            <div className="w-10 h-0.5 bg-gold mb-4" />
+        onError={(e) => {
+          e.currentTarget.src = "/images/placeholder.svg";
+          e.currentTarget.onerror = null;
+        }}
+      />
 
-            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-2 text-sm">
-              <div>
-                <dt className="font-semibold text-white/70">Artist</dt>
-                <dd className="text-white/90">Young K. Jang</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-white/70">Year</dt>
-                <dd className="text-white/90">{painting.year}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-white/70">Medium</dt>
-                <dd className="text-white/90">{painting.medium}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-white/70">Size</dt>
-                <dd className="text-white/90">{painting.size}</dd>
-              </div>
-            </dl>
+      {isAuthenticated && (
+        <form
+          onSubmit={handleUpload}
+          onClick={(e) => e.stopPropagation()}
+          className="absolute bottom-4 left-4 z-30 max-w-sm rounded-sm bg-black/80 border border-white/20 p-3 space-y-2"
+        >
+          <p className="text-xs text-white/60">
+            Replace image for this painting (saved to Azure Blob; public URL
+            updates the gallery).
+          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              className="text-xs max-w-full text-white"
+              disabled={uploading}
+            />
+            <button
+              type="submit"
+              disabled={uploading}
+              className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-gold text-white hover:bg-gold/90 disabled:opacity-50"
+            >
+              {uploading ? "Uploading…" : "Upload"}
+            </button>
           </div>
-
-          <a
-            href={`mailto:ykj@ykjgallery.com?subject=Inquiry about ${painting.title}`}
-            className="shrink-0 inline-block px-6 py-2.5 border-2 border-gold text-gold font-semibold tracking-wider uppercase text-sm hover:bg-gold hover:text-white transition-colors duration-300 text-center"
-          >
-            Inquire
-          </a>
-        </div>
-
-        {isAuthenticated && (
-          <form
-            onSubmit={handleUpload}
-            className="max-w-5xl mx-auto mt-4 pt-4 border-t border-white/20 space-y-2"
-          >
-            <p className="text-xs text-white/60">
-              Replace image for this painting (saved to Azure Blob; public URL
-              updates the gallery).
-            </p>
-            <div className="flex flex-wrap items-center gap-2">
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/jpeg,image/png,image/webp,image/gif"
-                className="text-xs max-w-full text-white"
-                disabled={uploading}
-              />
-              <button
-                type="submit"
-                disabled={uploading}
-                className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-gold text-white hover:bg-gold/90 disabled:opacity-50"
-              >
-                {uploading ? "Uploading…" : "Upload"}
-              </button>
-            </div>
-            {uploadError && (
-              <p className="text-xs text-red-400">{uploadError}</p>
-            )}
-          </form>
-        )}
-      </div>
+          {uploadError && (
+            <p className="text-xs text-red-400">{uploadError}</p>
+          )}
+        </form>
+      )}
     </div>
   );
 }
