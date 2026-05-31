@@ -113,7 +113,7 @@ export default function PaintingModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
+      className="fixed inset-0 z-[100] bg-black"
       role="dialog"
       aria-modal="true"
       aria-label={painting.title}
@@ -128,11 +128,11 @@ export default function PaintingModal({
         &times;
       </button>
 
-      <div className="absolute top-0 left-0 right-0 z-30 pointer-events-none bg-gradient-to-b from-black/70 to-transparent px-16 pt-5 pb-10">
-        <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-white text-center">
+      <div className="absolute top-4 left-4 sm:left-6 md:left-8 z-30 pointer-events-none max-w-[min(50vw,calc(100%-6rem))]">
+        <h2 className="font-serif text-lg sm:text-xl md:text-2xl text-white text-left">
           {painting.title}
         </h2>
-        <div className="w-10 h-0.5 bg-gold mx-auto mt-2" />
+        <div className="w-10 h-0.5 bg-gold mt-2" />
       </div>
 
       {hasPrevious && (
@@ -189,18 +189,20 @@ export default function PaintingModal({
         </button>
       )}
 
-      <img
-        key={`${imageSrc}-${previewKey}`}
-        src={imageSrc}
-        alt={painting.title}
-        className="max-h-full max-w-full object-contain select-none p-4 sm:p-6 md:p-10"
-        draggable={false}
-        onClick={(e) => e.stopPropagation()}
-        onError={(e) => {
-          e.currentTarget.src = "/images/placeholder.svg";
-          e.currentTarget.onerror = null;
-        }}
-      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <img
+          key={`${imageSrc}-${previewKey}`}
+          src={imageSrc}
+          alt={painting.title}
+          className="h-full w-full object-contain select-none"
+          draggable={false}
+          onClick={(e) => e.stopPropagation()}
+          onError={(e) => {
+            e.currentTarget.src = "/images/placeholder.svg";
+            e.currentTarget.onerror = null;
+          }}
+        />
+      </div>
 
       {isAuthenticated && (
         <form
