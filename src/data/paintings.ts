@@ -403,7 +403,7 @@ export const paintings: Painting[] = [
     year: 2018,
     medium: "Oil on canvas",
     size: "8” x 10",
-    image: "/images/paintings/Flower-12.jpg",
+    image: "/images/paintings/Flower-12.JPG",
   },
   {
     id: "fox",
