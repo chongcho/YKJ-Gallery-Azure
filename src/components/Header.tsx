@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/", label: "Collections" },
   { href: "/artist", label: "Artist" },
   { href: "/exhibition", label: "Exhibition" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/video", label: "Video" },
   { href: "/contact", label: "Contact" },
 ];
