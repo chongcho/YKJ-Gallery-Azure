@@ -74,8 +74,8 @@ function parseCsvLine(line) {
   return fields;
 }
 
-function parseCsvMetadata(csvText) {
-  const metadata = new Map();
+function parseCsvEntries(csvText) {
+  const entries = [];
   const lines = csvText.split(/\r?\n/).filter((line) => line.trim());
 
   for (const line of lines.slice(1)) {
@@ -85,18 +85,16 @@ function parseCsvMetadata(csvText) {
     const year = Number.parseInt(yearRaw, 10);
     if (!Number.isFinite(year)) continue;
 
-    const entry = {
+    entries.push({
       title,
       year,
       medium: medium || "Acrylic on canvas",
       size: cleanSize(sizeRaw || ""),
       category: inferCategory(title),
-    };
-
-    metadata.set(normalizeTitle(title), entry);
+    });
   }
 
-  return metadata;
+  return entries;
 }
 
 function listImageFiles() {
@@ -106,27 +104,28 @@ function listImageFiles() {
     .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
 }
 
-function findMetadata(filename, metadata) {
-  const titleFromFile = filename.replace(IMAGE_EXT, "");
-  const key = normalizeTitle(titleFromFile);
-  if (metadata.has(key)) return metadata.get(key);
+function buildFileIndex(files) {
+  const index = new Map();
 
-  for (const [metaKey, entry] of metadata.entries()) {
-    if (metaKey === key) return entry;
+  for (const filename of files) {
+    const key = normalizeTitle(filename.replace(IMAGE_EXT, ""));
+    if (!index.has(key)) {
+      index.set(key, filename);
+    }
   }
 
-  return null;
+  return index;
 }
 
-function buildPaintings(files, metadata) {
+function buildPaintings(csvEntries, fileIndex) {
   const usedIds = new Set();
   const paintings = [];
 
-  for (const filename of files) {
-    const titleFromFile = filename.replace(IMAGE_EXT, "");
-    const meta = findMetadata(filename, metadata);
+  for (const entry of csvEntries) {
+    const filename = fileIndex.get(normalizeTitle(entry.title));
+    if (!filename) continue;
 
-    let id = titleToId(meta?.title ?? titleFromFile);
+    let id = titleToId(entry.title);
     if (usedIds.has(id)) {
       id = `${id}-${path.extname(filename).slice(1).toLowerCase()}`;
     }
@@ -134,11 +133,11 @@ function buildPaintings(files, metadata) {
 
     paintings.push({
       id,
-      title: meta?.title ?? titleFromFile,
-      category: meta?.category ?? inferCategory(titleFromFile),
-      year: meta?.year ?? 2020,
-      medium: meta?.medium ?? "Acrylic on canvas",
-      size: meta?.size ?? "",
+      title: entry.title,
+      category: entry.category,
+      year: entry.year,
+      medium: entry.medium,
+      size: entry.size,
       image: `/images/paintings/${encodeURI(filename)}`,
     });
   }
@@ -189,28 +188,26 @@ function emitTs(paintings) {
 }
 
 const csvText = fs.readFileSync(csvPath, "utf8");
-const metadata = parseCsvMetadata(csvText);
+const csvEntries = parseCsvEntries(csvText);
 const files = listImageFiles();
-const paintings = buildPaintings(files, metadata);
+const fileIndex = buildFileIndex(files);
+const paintings = buildPaintings(csvEntries, fileIndex);
 
 fs.writeFileSync(outPath, emitTs(paintings), "utf8");
 
 console.log(`Wrote ${paintings.length} paintings to ${outPath}`);
 
-const csvTitles = [...metadata.values()].map((entry) => entry.title);
-const matchedTitles = new Set(
-  files
-    .map((file) => findMetadata(file, metadata)?.title)
-    .filter(Boolean)
+const includedTitles = new Set(paintings.map((painting) => painting.title));
+const csvWithoutImages = csvEntries
+  .map((entry) => entry.title)
+  .filter((title) => !includedTitles.has(title));
+
+const csvTitleKeys = new Set(
+  csvEntries.map((entry) => normalizeTitle(entry.title))
 );
-const csvWithoutImages = csvTitles.filter((title) => !matchedTitles.has(title));
-const imagesWithoutCsv = paintings.filter((painting) => {
-  const fileTitle = decodeURIComponent(path.basename(painting.image)).replace(
-    IMAGE_EXT,
-    ""
-  );
-  return !metadata.has(normalizeTitle(fileTitle));
-});
+const excludedImages = files.filter(
+  (file) => !csvTitleKeys.has(normalizeTitle(file.replace(IMAGE_EXT, "")))
+);
 
 if (csvWithoutImages.length) {
   console.log(
@@ -219,17 +216,9 @@ if (csvWithoutImages.length) {
   );
 }
 
-if (imagesWithoutCsv.length) {
+if (excludedImages.length) {
   console.log(
-    `Image files without CSV metadata (${imagesWithoutCsv.length}):`,
-    imagesWithoutCsv.map((painting) => painting.title).join(", ")
-  );
-}
-
-const missingSize = paintings.filter((painting) => !painting.size);
-if (missingSize.length) {
-  console.log(
-    `Paintings missing size (${missingSize.length}):`,
-    missingSize.map((painting) => painting.title).join(", ")
+    `Image files excluded (not in CSV) (${excludedImages.length}):`,
+    excludedImages.join(", ")
   );
 }
