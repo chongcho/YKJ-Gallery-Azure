@@ -391,9 +391,9 @@ export const paintings: Painting[] = [
     id: "flower-11",
     title: "Flower-11",
     category: "flowers",
-    year: 2018,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "36” x 24",
+    year: 2019,
+    medium: "Oil on canvas",
+    size: "8” x 10",
     image: "/images/paintings/Flower-11.jpg",
   },
   {
@@ -401,18 +401,9 @@ export const paintings: Painting[] = [
     title: "Flower-12",
     category: "flowers",
     year: 2018,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "16” x 20",
-    image: "/images/paintings/Flower-12.jpg",
-  },
-  {
-    id: "flower-13",
-    title: "Flower-13",
-    category: "flowers",
-    year: 2019,
     medium: "Oil on canvas",
     size: "8” x 10",
-    image: "/images/paintings/Flower-13.JPG",
+    image: "/images/paintings/Flower-12.jpg",
   },
   {
     id: "fox",
@@ -593,6 +584,15 @@ export const paintings: Painting[] = [
     medium: "Acrylic on canvas",
     size: "24” x 30",
     image: "/images/paintings/The%20Witch.jpg",
+  },
+  {
+    id: "the-sunset-glow",
+    title: "The Sunset Glow",
+    category: "other",
+    year: 2018,
+    medium: "Acrylic on canvas",
+    size: "48” x 48",
+    image: "/images/paintings/The%20Sunset%20Glow.JPG",
   },
 ];
 
