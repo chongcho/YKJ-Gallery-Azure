@@ -1,13 +1,12 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const paintingsDir = path.join(root, "public", "images", "paintings");
-const oldPaintingsPath = path.join(root, "src", "data", "paintings.ts");
-const outPath = oldPaintingsPath;
+const csvPath = path.join(paintingsDir, "Homepage Paintings.csv");
+const outPath = path.join(root, "src", "data", "paintings.ts");
 
 const IMAGE_EXT = /\.(jpe?g|png|webp|gif)$/i;
 
@@ -27,6 +26,15 @@ function titleToId(title) {
     .replace(/^-|-$/g, "");
 }
 
+function cleanSize(size) {
+  return size
+    .replace(/\uFFFD/g, "\u201d")
+    .replace(/""/g, "\u201d")
+    .replace(/^[\u201c\u201d"]+|[\u201c\u201d"]+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function inferCategory(title) {
   const t = title.toLowerCase();
   if (t.startsWith("taos")) return "adobe";
@@ -43,22 +51,49 @@ function inferCategory(title) {
   return "other";
 }
 
-function parseOldPaintings(source) {
-  const metadata = new Map();
-  const blockRe =
-    /\{\s*id:\s*"([^"]+)",\s*title:\s*"([^"]+)",\s*category:\s*"([^"]+)",\s*year:\s*(\d+),\s*medium:\s*"([^"]*)",\s*size:\s*"([^"]*)",\s*image:\s*"([^"]+)",\s*\}/g;
+function parseCsvLine(line) {
+  const fields = [];
+  let current = "";
+  let inQuotes = false;
 
-  for (const match of source.matchAll(blockRe)) {
-    const [, , title, category, year, medium, size, imagePath] = match;
-    const basename = decodeURIComponent(path.basename(imagePath));
-    const key = normalizeTitle(basename.replace(IMAGE_EXT, ""));
-    metadata.set(key, {
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+      continue;
+    }
+    if (char === "," && !inQuotes) {
+      fields.push(current.trim());
+      current = "";
+      continue;
+    }
+    current += char;
+  }
+
+  fields.push(current.trim());
+  return fields;
+}
+
+function parseCsvMetadata(csvText) {
+  const metadata = new Map();
+  const lines = csvText.split(/\r?\n/).filter((line) => line.trim());
+
+  for (const line of lines.slice(1)) {
+    const [title, , yearRaw, medium, sizeRaw] = parseCsvLine(line);
+    if (!title || title === "Art Title") continue;
+
+    const year = Number.parseInt(yearRaw, 10);
+    if (!Number.isFinite(year)) continue;
+
+    const entry = {
       title,
-      category,
-      year: Number(year),
-      medium,
-      size,
-    });
+      year,
+      medium: medium || "Acrylic on canvas",
+      size: cleanSize(sizeRaw || ""),
+      category: inferCategory(title),
+    };
+
+    metadata.set(normalizeTitle(title), entry);
   }
 
   return metadata;
@@ -71,15 +106,27 @@ function listImageFiles() {
     .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
 }
 
+function findMetadata(filename, metadata) {
+  const titleFromFile = filename.replace(IMAGE_EXT, "");
+  const key = normalizeTitle(titleFromFile);
+  if (metadata.has(key)) return metadata.get(key);
+
+  for (const [metaKey, entry] of metadata.entries()) {
+    if (metaKey === key) return entry;
+  }
+
+  return null;
+}
+
 function buildPaintings(files, metadata) {
   const usedIds = new Set();
   const paintings = [];
 
   for (const filename of files) {
     const titleFromFile = filename.replace(IMAGE_EXT, "");
-    const meta = metadata.get(normalizeTitle(titleFromFile));
+    const meta = findMetadata(filename, metadata);
 
-    let id = titleToId(titleFromFile);
+    let id = titleToId(meta?.title ?? titleFromFile);
     if (usedIds.has(id)) {
       id = `${id}-${path.extname(filename).slice(1).toLowerCase()}`;
     }
@@ -141,152 +188,48 @@ function emitTs(paintings) {
   return lines.join("\n");
 }
 
-const oldSource = execSync("git show HEAD:src/data/paintings.ts", {
-  cwd: root,
-  encoding: "utf8",
-});
-const metadata = parseOldPaintings(oldSource);
-
-// Carry over metadata for renamed files.
-const renameAliases = [
-  ["flower-1", "flower-1"],
-  ["flower-2", "flower-2"],
-  ["flower--5", "flower-5"],
-  ["flower--11", "flower-11"],
-  ["taos-2", "taos-2"],
-  ["taos-3", "taos-3"],
-];
-
-for (const [oldKey, newKey] of renameAliases) {
-  const oldMeta = metadata.get(normalizeTitle(oldKey));
-  if (oldMeta) metadata.set(normalizeTitle(newKey), oldMeta);
-}
-
-const manualMetadata = {
-  "abstract-12": {
-    title: "Abstract-12",
-    category: "other",
-    year: 2018,
-    medium: "Acrylic on canvas",
-    size: "36” x 36”",
-  },
-  "flower-6": {
-    title: "Flower-6",
-    category: "flowers",
-    year: 2018,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "16” x 20”",
-  },
-  "flower-7": {
-    title: "Flower-7",
-    category: "flowers",
-    year: 2019,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "12” x 12”",
-  },
-  "flower-8": {
-    title: "Flower-8",
-    category: "flowers",
-    year: 2019,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "12” x 12”",
-  },
-  "flower-9": {
-    title: "Flower-9",
-    category: "flowers",
-    year: 2019,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "12” x 12”",
-  },
-  "flower-11": {
-    title: "Flower-11",
-    category: "flowers",
-    year: 2018,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "36” x 24”",
-  },
-  "flower-5": {
-    title: "Flower-5",
-    category: "flowers",
-    year: 2018,
-    medium: "Acrylic and Mixed Media on canvas",
-    size: "36” x 24”",
-  },
-  fox: {
-    title: "Fox",
-    category: "other",
-    year: 2018,
-    medium: "Acrylic on canvas",
-    size: "24” x 30”",
-  },
-  "the witch": {
-    title: "The Witch",
-    category: "other",
-    year: 2018,
-    medium: "Acrylic on canvas",
-    size: "24” x 30”",
-  },
-  "yacht on lake": {
-    title: "Yacht on Lake",
-    category: "other",
-    year: 2017,
-    medium: "Acrylic on canvas",
-    size: "24” x 24”",
-  },
-  sunflowers: {
-    title: "Sunflowers",
-    category: "flowers",
-    year: 2020,
-    medium: "Acrylic on canvas",
-    size: "",
-  },
-  fire: {
-    title: "Fire",
-    category: "other",
-    year: 2020,
-    medium: "Acrylic on canvas",
-    size: "",
-  },
-  "un finished": {
-    title: "Un finished",
-    category: "other",
-    year: 2020,
-    medium: "Acrylic on canvas",
-    size: "",
-  },
-  unfinished: {
-    title: "Unfinished",
-    category: "other",
-    year: 2020,
-    medium: "Acrylic on canvas",
-    size: "",
-  },
-};
-
-for (const [key, value] of Object.entries(manualMetadata)) {
-  metadata.set(normalizeTitle(key), value);
-}
-
-for (let i = 1; i <= 9; i++) {
-  metadata.set(normalizeTitle(`practice-${i}`), {
-    title: `Practice-${i}`,
-    category: "other",
-    year: 2020,
-    medium: "Acrylic on canvas",
-    size: "",
-  });
-}
-
+const csvText = fs.readFileSync(csvPath, "utf8");
+const metadata = parseCsvMetadata(csvText);
 const files = listImageFiles();
 const paintings = buildPaintings(files, metadata);
+
 fs.writeFileSync(outPath, emitTs(paintings), "utf8");
 
 console.log(`Wrote ${paintings.length} paintings to ${outPath}`);
 
-const missingMeta = paintings.filter((p) => !p.size);
-if (missingMeta.length) {
+const csvTitles = [...metadata.values()].map((entry) => entry.title);
+const matchedTitles = new Set(
+  files
+    .map((file) => findMetadata(file, metadata)?.title)
+    .filter(Boolean)
+);
+const csvWithoutImages = csvTitles.filter((title) => !matchedTitles.has(title));
+const imagesWithoutCsv = paintings.filter((painting) => {
+  const fileTitle = decodeURIComponent(path.basename(painting.image)).replace(
+    IMAGE_EXT,
+    ""
+  );
+  return !metadata.has(normalizeTitle(fileTitle));
+});
+
+if (csvWithoutImages.length) {
   console.log(
-    `Note: ${missingMeta.length} paintings have no size metadata:`,
-    missingMeta.map((p) => p.title).join(", ")
+    `CSV entries without image files (${csvWithoutImages.length}):`,
+    csvWithoutImages.join(", ")
+  );
+}
+
+if (imagesWithoutCsv.length) {
+  console.log(
+    `Image files without CSV metadata (${imagesWithoutCsv.length}):`,
+    imagesWithoutCsv.map((painting) => painting.title).join(", ")
+  );
+}
+
+const missingSize = paintings.filter((painting) => !painting.size);
+if (missingSize.length) {
+  console.log(
+    `Paintings missing size (${missingSize.length}):`,
+    missingSize.map((painting) => painting.title).join(", ")
   );
 }
