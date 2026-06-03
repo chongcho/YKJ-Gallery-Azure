@@ -18,7 +18,7 @@ export const videos: Video[] = [
   {
     title: "Taos",
     description: "Painting process video for the Taos series.",
-    placeholder: "/images/paintings/Taos-1.jpg",
+    placeholder: "/images/paintings/Taos-2.jpg",
     src: `/videos/Taos.mp4?${VIDEO_ASSET_Q}`,
   },
   {
