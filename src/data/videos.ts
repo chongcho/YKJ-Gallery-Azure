@@ -11,7 +11,7 @@ export interface Video {
 }
 
 /** Bust browser caches after video or CDN header changes (bump when replacing MP4s). */
-const VIDEO_ASSET_Q = "v=2026-05-04";
+const VIDEO_ASSET_Q = "v=2026-06-02";
 
 /** Local `src` omitted: Azure Static Web Apps free tier limits deploy size (~250MB); large MP4s are not bundled. Add `src` when hosting elsewhere or after upgrading plan. */
 export const videos: Video[] = [
@@ -24,7 +24,7 @@ export const videos: Video[] = [
   {
     title: "Cactus",
     description: "Painting process video for Cactus.",
-    placeholder: "/images/paintings/Cactus in vase.jpg",
+    placeholder: "/images/paintings/Saguaro Cactus-1.jpg",
     src: `/videos/Cactus.mp4?${VIDEO_ASSET_Q}`,
   },
   {
@@ -36,7 +36,7 @@ export const videos: Video[] = [
   {
     title: "Golf",
     description: "Painting process video for Golf.",
-    placeholder: "/images/paintings/Fire.jpg",
+    placeholder: "/images/paintings/Golf.jpg",
     src: `/videos/Golf.mp4?${VIDEO_ASSET_Q}`,
   },
 ];
