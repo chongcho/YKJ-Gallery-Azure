@@ -36,7 +36,7 @@ export const videos: Video[] = [
   {
     title: "Golf",
     description: "Painting process video for Golf.",
-    placeholder: "/images/paintings/Golf.jpg",
+    placeholder: "/images/paintings/Golf.JPG",
     src: `/videos/Golf.mp4?${VIDEO_ASSET_Q}`,
   },
 ];
