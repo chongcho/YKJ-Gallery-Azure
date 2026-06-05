@@ -1,3 +1,5 @@
+export const PAINTING_CATALOG_VERSION = "494a36eab930";
+
 export interface Painting {
   id: string;
   title: string;
@@ -403,7 +405,7 @@ export const paintings: Painting[] = [
     year: 2018,
     medium: "Oil on canvas",
     size: "8” x 10",
-    image: "/images/paintings/Flower-9.JPG",
+    image: "/images/paintings/Flower-9.jpg",
   },
   {
     id: "golf",

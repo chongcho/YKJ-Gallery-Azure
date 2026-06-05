@@ -1,3 +1,5 @@
+import crypto from "crypto";
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -98,10 +100,32 @@ function parseCsvEntries(csvText) {
 }
 
 function listImageFiles() {
-  return fs
-    .readdirSync(paintingsDir)
-    .filter((name) => IMAGE_EXT.test(name))
-    .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+  const index = new Map();
+
+  try {
+    const tracked = execSync("git ls-files public/images/paintings/", {
+      cwd: root,
+      encoding: "utf8",
+    });
+    for (const line of tracked.split(/\r?\n/)) {
+      const filename = path.basename(line.trim());
+      if (!filename || !IMAGE_EXT.test(filename)) continue;
+      const key = normalizeTitle(filename.replace(IMAGE_EXT, ""));
+      if (!index.has(key)) index.set(key, filename);
+    }
+  } catch {
+    // Fall back to disk listing when git is unavailable.
+  }
+
+  for (const filename of fs.readdirSync(paintingsDir)) {
+    if (!IMAGE_EXT.test(filename)) continue;
+    const key = normalizeTitle(filename.replace(IMAGE_EXT, ""));
+    if (!index.has(key)) index.set(key, filename);
+  }
+
+  return [...index.values()].sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: "base" })
+  );
 }
 
 function buildFileIndex(files) {
@@ -145,8 +169,10 @@ function buildPaintings(csvEntries, fileIndex) {
   return paintings;
 }
 
-function emitTs(paintings) {
+function emitTs(paintings, catalogVersion) {
   const lines = [
+    `export const PAINTING_CATALOG_VERSION = ${JSON.stringify(catalogVersion)};`,
+    "",
     "export interface Painting {",
     '  id: string;',
     "  title: string;",
@@ -188,12 +214,17 @@ function emitTs(paintings) {
 }
 
 const csvText = fs.readFileSync(csvPath, "utf8");
+const catalogVersion = crypto
+  .createHash("sha256")
+  .update(csvText)
+  .digest("hex")
+  .slice(0, 12);
 const csvEntries = parseCsvEntries(csvText);
 const files = listImageFiles();
 const fileIndex = buildFileIndex(files);
 const paintings = buildPaintings(csvEntries, fileIndex);
 
-fs.writeFileSync(outPath, emitTs(paintings), "utf8");
+fs.writeFileSync(outPath, emitTs(paintings, catalogVersion), "utf8");
 
 console.log(`Wrote ${paintings.length} paintings to ${outPath}`);
 

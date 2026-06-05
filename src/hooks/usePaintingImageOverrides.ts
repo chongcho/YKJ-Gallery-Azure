@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import type { PaintingImageOverride } from "@/lib/paintingImage";
 
-export type PaintingImageOverrides = Record<string, string>;
+export type PaintingImageOverrides = Record<string, PaintingImageOverride>;
 
 export function usePaintingImageOverrides() {
   const [overrides, setOverrides] = useState<PaintingImageOverrides>({});

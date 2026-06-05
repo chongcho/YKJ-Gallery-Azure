@@ -60,16 +60,29 @@ module.exports = async function (context, req) {
   }
 
   const body = parseBody(req);
-  if (!body || !body.paintingId || !body.imageBase64) {
+  if (!body || !body.paintingId || !body.imageBase64 || !body.imagePath) {
     context.res = {
       status: 400,
       headers: { "Content-Type": "application/json" },
-      body: { error: "Expected JSON: { paintingId, imageBase64, contentType? }" },
+      body: {
+        error:
+          "Expected JSON: { paintingId, imagePath, imageBase64, contentType? }",
+      },
     };
     return;
   }
 
   const paintingId = String(body.paintingId).trim();
+  const imagePath = String(body.imagePath).trim();
+  if (!imagePath.startsWith("/images/paintings/")) {
+    context.res = {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+      body: { error: "Invalid imagePath" },
+    };
+    return;
+  }
+
   if (!/^[a-z0-9-]+$/.test(paintingId)) {
     context.res = {
       status: 400,
@@ -113,7 +126,7 @@ module.exports = async function (context, req) {
   try {
     const url = await uploadPaintingBlob(paintingId, buffer, contentType);
     const manifest = await getManifest();
-    manifest[paintingId] = url;
+    manifest[paintingId] = { url, imagePath };
     await saveManifest(manifest);
 
     context.res = {

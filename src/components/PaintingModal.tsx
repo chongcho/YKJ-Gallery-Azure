@@ -92,6 +92,7 @@ export default function PaintingModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paintingId: painting.id,
+          imagePath: imageSrc.split("?")[0],
           imageBase64: base64,
           contentType,
         }),

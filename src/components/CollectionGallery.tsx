@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { paintings } from "@/data/paintings";
+import { paintings, PAINTING_CATALOG_VERSION } from "@/data/paintings";
 import PaintingModal from "./PaintingModal";
 import type { Painting } from "@/data/paintings";
 import { usePaintingImageOverrides } from "@/hooks/usePaintingImageOverrides";
+import { resolvePaintingImageSrc } from "@/lib/paintingImage";
 
 export default function CollectionGallery() {
   const { overrides, refresh } = usePaintingImageOverrides();
@@ -32,7 +33,11 @@ export default function CollectionGallery() {
     <section className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-10 sm:py-12 md:py-16">
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
         {paintings.map((painting) => {
-          const src = overrides[painting.id] ?? painting.image;
+          const src = resolvePaintingImageSrc(
+            painting,
+            overrides,
+            PAINTING_CATALOG_VERSION
+          );
           return (
             <div
               key={painting.id}
@@ -82,7 +87,11 @@ export default function CollectionGallery() {
       {selectedPainting && selectedIndex >= 0 && (
         <PaintingModal
           painting={selectedPainting}
-          imageSrc={overrides[selectedPainting.id] ?? selectedPainting.image}
+          imageSrc={resolvePaintingImageSrc(
+            selectedPainting,
+            overrides,
+            PAINTING_CATALOG_VERSION
+          )}
           onClose={() => setSelectedPainting(null)}
           onPrevious={goToPrevious}
           onNext={goToNext}
